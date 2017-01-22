@@ -1,4 +1,6 @@
 var express = require('express');
+require('../db');
+
 var bodyParser = require('body-parser');
 var router = require('./routes');
 
