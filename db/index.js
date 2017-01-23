@@ -1,5 +1,5 @@
 var Sequelize = require('sequelize');
-module.exports.sequelize = new Sequelize('trdb', 'root', '', {
+module.exports.sequelize = new Sequelize('trdb', 'root', 'root', {
   host: 'localhost',
   dialect: 'mysql',
 });
@@ -9,7 +9,8 @@ module.exports.User = this.sequelize.define('users', {
     type: Sequelize.STRING,
     unique: true
   }, password: Sequelize.STRING,
-    karma: Sequelize.INTEGER
+    karma: Sequelize.INTEGER,
+    salt: Sequelize.STRING
 });
 
 module.exports.Train = this.sequelize.define('trains', {
