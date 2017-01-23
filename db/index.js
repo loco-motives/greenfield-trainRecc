@@ -9,7 +9,8 @@ module.exports.User = this.sequelize.define('users', {
     type: Sequelize.STRING,
     unique: true
   }, password: Sequelize.STRING,
-    karma: Sequelize.INTEGER
+    karma: Sequelize.INTEGER,
+    salt: Sequelize.STRING
 });
 
 module.exports.Train = this.sequelize.define('trains', {
