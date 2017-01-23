@@ -2,6 +2,6 @@ var router = require('express').Router();
 var controller = require('./controllers');
 
 router.get('/users', controller.users.get);
-router.post('/signup', signupController.signup.post);
+router.post('/signup', controller.signup.post);
 
 module.exports = router;

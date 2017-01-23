@@ -13,6 +13,7 @@ var signup = {
     //     res.render('/signup');
     // }
     post: function(req, res){
+        console.log('req.body object is: ', req.body);
         var username = req.body.username;
         var password = req.body.password;
 
@@ -30,7 +31,8 @@ var signup = {
             password: hashedPassword
         }
 
-        Model.user.create(newUser).then( () => {
+        userModel.create(newUser).then( () => {
+            console.log('user created');
             res.redirect('/');
         }). catch( (err) => {
             req.flash('error', 'Please choose a different username');
