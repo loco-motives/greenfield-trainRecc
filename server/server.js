@@ -2,6 +2,7 @@ var express = require('express');
 var session = require('express-session');
 var cookieParser = require('cookie-parser');
 var flash = require('connect-flash');
+var setupPassport = require('./passportSetup');
 require('../db');
 
 var bodyParser = require('body-parser');
@@ -17,6 +18,7 @@ app.use(session({
     saveUninitialized: false
 }));
 app.use(flash());
+setupPassport(app);
 
 var port = 3000;
 app.listen(port, function(){

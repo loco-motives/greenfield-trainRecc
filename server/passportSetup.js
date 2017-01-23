@@ -25,4 +25,22 @@ module.exports = (app) => {
             });
         }
     ));
+
+    passport.serializeUser( (user, done) => {
+        done(null, user.id);
+    });
+
+    passport.deserializeUser( (id, done) => {
+        Model.User.findOne({
+            where: {
+                'id': id
+            }
+        }).then( (user) => {
+            if (user === null) {
+                done(new Error('Wrong user id'))
+            }
+
+            done(null, user);
+        });
+    });
 }
