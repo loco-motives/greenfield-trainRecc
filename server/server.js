@@ -10,6 +10,7 @@ var router = require('./routes');
 
 var app = express();
 app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended: true}))
 app.use('/api', router);
 app.use(cookieParser());
 app.use(session({ 
