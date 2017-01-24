@@ -9,29 +9,33 @@ module.exports = (app) => {
 
     passport.use(new LocalStrategy(
         (username, password, done) => {
-            Model.User.findOne({
+            userModel.findOne({
                 where: {'username': username}}
             ).then( (user) => {
                 if (user === null) {
+                    console.log('Username does not exist');
                     return done(null, false, {message: 'Wrong user/password'});
                 }
 
                 var hashedPassword = bcrypt.hashSync(password, user.salt);
                 if(user.password === hashedPassword){
+                    console.log('logged in');
                     return done(null, user);
                 }
-
+                console.log('Password does not match');
                 return done(null, false, {message: 'Wrong user/password'});
             });
         }
     ));
 
     passport.serializeUser( (user, done) => {
+        console.log('serializeUser');
         done(null, user.id);
     });
 
     passport.deserializeUser( (id, done) => {
-        Model.User.findOne({
+        console.log('deserializeUser');
+        userModel.findOne({
             where: {
                 'id': id
             }
@@ -39,7 +43,7 @@ module.exports = (app) => {
             if (user === null) {
                 done(new Error('Wrong user id'))
             }
-
+            console.log('deserializeUser .then');
             done(null, user);
         });
     });

@@ -10,7 +10,6 @@ var router = require('./routes');
 
 var app = express();
 app.use(bodyParser.json());
-app.use('/api', router);
 app.use(cookieParser());
 app.use(session({ 
     secret: 'trainrecc',
@@ -19,6 +18,7 @@ app.use(session({
 }));
 app.use(flash());
 setupPassport(app);
+app.use('/api', router);
 
 var port = 3000;
 app.listen(port, function(){
