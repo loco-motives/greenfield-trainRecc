@@ -13,15 +13,15 @@ app.use(bodyParser.json());
 app.use('/api', router);
 app.use(cookieParser());
 app.use(session({ 
-    secret: 'trainrecc',
-    resave: false,
-    saveUninitialized: false
+  secret: 'trainrecc',
+  resave: false,
+  saveUninitialized: false
 }));
 app.use(flash());
 setupPassport(app);
 
 var port = 3000;
 app.listen(port, function(){
-    console.log('App listening on port', port);
+  console.log('App listening on port', port);
 });
 
