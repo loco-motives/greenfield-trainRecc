@@ -1,5 +1,5 @@
 var Sequelize = require('sequelize');
-module.exports.sequelize = new Sequelize('trdb', 'root', 'root', {
+module.exports.sequelize = new Sequelize('trdb', 'root', '', {
   host: 'localhost',
   dialect: 'mysql',
 });
