@@ -6,7 +6,7 @@ var bcrypt = require('bcryptjs'),
   cheerio = require('cheerio'),
   userModel = require('../../db/index.js').User;
 
-const cookie = 'AUTH=03%3A45dcd553c82cccb5165dfff1dfedc88f%3A1484958954%3A1245621796%3ACA-US';
+const hypemCookie = 'AUTH=03%3A45dcd553c82cccb5165dfff1dfedc88f%3A1484958954%3A1245621796%3ACA-US';
 const hypemHost = 'hypem.com';
 const hypemSearch = 'http://hypem.com/search/';
 const hypemServe = 'http://hypem.com/serve/source/';
@@ -54,9 +54,10 @@ var signup = {
 var findHypemSongs = {
   post: (req, res) => {
     console.log('Serving request for ', req.method, 'where url is ', req.url);
+
     var songQuery = req.body.songQuery.replace(/ /g, '%20');
     var trackTitle;
-    var headers = { 'Cookie': cookie, 'Host': hypemHost};
+    var headers = { 'Cookie': hypemCookie, 'Host': hypemHost};
 
     rp.get({ url: hypemSearch + songQuery + '/1/', headers: headers})
       .then(html => {
