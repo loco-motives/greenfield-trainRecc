@@ -10,6 +10,11 @@ var router = require('./routes');
 
 var app = express();
 app.use(bodyParser.json());
+<<<<<<< HEAD
+=======
+app.use(bodyParser.urlencoded({extended: true}))
+app.use('/api', router);
+>>>>>>> Start on parsing each song from user search
 app.use(cookieParser());
 app.use(session({ 
   secret: 'trainrecc',
