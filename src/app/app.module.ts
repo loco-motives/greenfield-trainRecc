@@ -37,7 +37,7 @@ import { LoginService } from './login/login.service';
         path: 'login', component: LoginComponent
       }])
   ],
-  providers: [ApiService, SignupService],
+  providers: [ApiService, SignupService, LoginService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
