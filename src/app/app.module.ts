@@ -14,6 +14,7 @@ import { ApiService } from './song-form/api.service';
 import { LoginComponent } from './login/login.component';
 import { FormComponent } from './login/form/form.component';
 import { SignupComponent } from './login/signup/signup.component';
+import { SignupService} from './signup/signup.service';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,7 @@ import { SignupComponent } from './login/signup/signup.component';
     ]),
     MaterialModule.forRoot()
   ],
-  providers: [ApiService],
+  providers: [ApiService, SignupService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
