@@ -10,4 +10,6 @@ router.post('/login', passport.authenticate('local', {
     failureFlash: true
 }));
 
+router.post('/hypemSongs', controller.findHypemSongs.post);
+
 module.exports = router;
