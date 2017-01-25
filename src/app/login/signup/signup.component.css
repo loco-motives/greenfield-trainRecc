@@ -1,13 +1,13 @@
 @keyframes dropHeader {
     0% {
-        transform: translateY(-250%);
+        transform: translateY(-200%);
     }
     100% {
         transform: translateY(0);
     }
 }
 
-.killme {
+.signup {
     width: 40%;
     margin-left: auto;
     margin-right: auto;
@@ -22,8 +22,7 @@
     border-radius: 25px;
     border: groove;
    border-color: darkgray;
-      filter: blur(0.3px);
-
+   filter: blur(0.3px);
    
 }
 

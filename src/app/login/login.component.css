@@ -8,13 +8,24 @@
 
 }
 
-.login {
+.login1 {
    margin-top: 3%;
    border: groove;
    border-color: darkgray;
    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
    filter: blur(0.7px);
    background-color: darkred;
-   -webkit-transform: rotate(1.5deg); /* Chrome, Safari, Opera */
-    transform: rotate(1.5deg);
+
+}
+
+.login {
+   margin-top: 3%;
+   margin-left: 5px;
+   border: groove;
+   border-color: darkgray;
+   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+   filter: blur(0.7px);
+   background-color: darkred;
+
+
 }

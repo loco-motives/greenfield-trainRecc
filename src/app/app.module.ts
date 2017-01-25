@@ -12,7 +12,8 @@ import { SongFormComponent } from './song-form/song-form.component';
 
 import { ApiService } from './song-form/api.service';
 import { LoginComponent } from './login/login.component';
-import { FormComponent } from './login/form/form.component'
+import { FormComponent } from './login/form/form.component';
+import { SignupComponent } from './login/signup/signup.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { FormComponent } from './login/form/form.component'
     HomeComponent,
     SongFormComponent,
     LoginComponent,
-    FormComponent
+    FormComponent,
+    SignupComponent
   ],
   imports: [
     BrowserModule,
@@ -29,7 +31,8 @@ import { FormComponent } from './login/form/form.component'
     RouterModule.forRoot([
       { path: '', component: HomeComponent },
       { path: 'login', component: LoginComponent, children: [
-        { path: 'form', component: FormComponent }
+        { path: 'form', component: FormComponent },
+        { path: 'signup', component: SignupComponent}
       ]},
       { path: 'songForm', component: SongFormComponent }
     ]),
