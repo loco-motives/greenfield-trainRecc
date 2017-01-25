@@ -6,19 +6,23 @@ import { Routes, RouterModule} from '@angular/router';
  
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
+import { SongFormComponent } from './song-form/song-form.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent
+    HomeComponent,
+    SongFormComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
-    RouterModule.forRoot([
-      {path: '', component: HomeComponent}
-    ])
+    RouterModule.forRoot([{
+        path: '', component: HomeComponent
+      }, {
+        path: 'songForm', component: SongFormComponent
+      }])
   ],
   providers: [],
   bootstrap: [AppComponent]
