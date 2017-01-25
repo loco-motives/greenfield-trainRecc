@@ -7,9 +7,11 @@ import { Routes, RouterModule} from '@angular/router';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { SongFormComponent } from './song-form/song-form.component';
+import { SignupComponent } from './signup/signup.component';
 
 import { ApiService } from './song-form/api.service';
-import { SignupComponent } from './signup/signup.component';
+import { SignupService} from './signup/signup.service';
+
 
 @NgModule({
   declarations: [
@@ -28,7 +30,7 @@ import { SignupComponent } from './signup/signup.component';
         path: 'songForm', component: SongFormComponent
       }])
   ],
-  providers: [ApiService],
+  providers: [ApiService, SignupService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
