@@ -11,29 +11,25 @@ import { HomeComponent } from './home/home.component';
 import { SongFormComponent } from './song-form/song-form.component';
 
 import { ApiService } from './song-form/api.service';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    SongFormComponent
+    SongFormComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
-<<<<<<< HEAD
     RouterModule.forRoot([{
         path: '', component: HomeComponent
       }, {
         path: 'songForm', component: SongFormComponent
-      }])
-=======
-    RouterModule.forRoot([
-      {path: '', component: HomeComponent}
-    ]),
+      }]),
     MaterialModule.forRoot()
->>>>>>> getting material working
   ],
   providers: [ApiService],
   bootstrap: [AppComponent]
