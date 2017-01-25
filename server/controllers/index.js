@@ -56,14 +56,17 @@ var findHypemSongs = {
     console.log('Serving request for ', req.method, 'where url is ', req.url);
 
     var songQuery = req.body.songQuery.replace(/ /g, '%20');
-    var trackTitle;
     var headers = { 'Cookie': hypemCookie, 'Host': hypemHost};
+    var trackTitle;
+    var artist;
+    var tracks;
 
     rp.get({ url: hypemSearch + songQuery + '/1/', headers: headers})
       .then(html => {
         let $ = cheerio.load(html);
-        let tracks = JSON.parse($('#displayList-data').remove().html()).tracks;
+        tracks = JSON.parse($('#displayList-data').remove().html()).tracks;
         trackTitle = tracks[0].song.replace(/ /g, '_');
+        artist = tracks[0].artist.replace(/ /, '_');
 
         return rp.get({ url: hypemServe + tracks[0].id + '/' + tracks[0].key, headers: headers });
       }).then(scObj => {
@@ -71,9 +74,9 @@ var findHypemSongs = {
           .on('error', err => {
             console.log('err', err);
             res.send(err);
-          }).pipe(fs.createWriteStream(path.join(__dirname, '../../mp3s/') + trackTitle + '.mp3'));
+          }).pipe(fs.createWriteStream(path.join(__dirname, '../../mp3s/') + trackTitle + '_' + artist + '.mp3'));
       }).then(successRes => {
-        res.send('success creating mp3 file');
+        res.send(tracks.slice(0, 3));
       }).catch(err => {
         console.log('err', err);
         res.send(err);

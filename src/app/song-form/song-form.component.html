@@ -1,3 +1,8 @@
-<p>
-  song-form works!
-</p>
+<input placeholder="Search for song" [(ngModel)]="songToSearch">
+<button (click)="searchForSong()">Song to add</button>
+<ul>
+  <li *ngFor="let songResult of songResults;">
+    <p>{{songResult.artist}}</p>
+    <p>{{songResult.song}}</p>
+  </li>
+</ul>

@@ -8,6 +8,8 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { SongFormComponent } from './song-form/song-form.component';
 
+import { ApiService } from './song-form/api.service';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -24,7 +26,7 @@ import { SongFormComponent } from './song-form/song-form.component';
         path: 'songForm', component: SongFormComponent
       }])
   ],
-  providers: [],
+  providers: [ApiService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
