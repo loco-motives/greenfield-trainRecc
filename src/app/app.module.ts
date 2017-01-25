@@ -8,9 +8,11 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { SongFormComponent } from './song-form/song-form.component';
 import { SignupComponent } from './signup/signup.component';
+import { LoginComponent} from './login/login.component';
 
 import { ApiService } from './song-form/api.service';
 import { SignupService} from './signup/signup.service';
+import { LoginService } from './login/login.service';
 
 
 @NgModule({
@@ -18,7 +20,8 @@ import { SignupService} from './signup/signup.service';
     AppComponent,
     HomeComponent,
     SongFormComponent,
-    SignupComponent
+    SignupComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -28,6 +31,10 @@ import { SignupService} from './signup/signup.service';
         path: '', component: HomeComponent
       }, {
         path: 'songForm', component: SongFormComponent
+      }, {
+        path: 'signUp', component: SignupComponent
+      }, {
+        path: 'login', component: LoginComponent
       }])
   ],
   providers: [ApiService, SignupService],
