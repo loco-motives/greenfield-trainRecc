@@ -15,15 +15,16 @@ import { LoginComponent } from './login/login.component';
 import { FormComponent } from './login/form/form.component';
 import { SignupComponent } from './login/signup/signup.component';
 import { SignupService} from './signup/signup.service';
+import { LoginService } from './login/login.service';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     SongFormComponent,
-    LoginComponent,
     FormComponent,
-    SignupComponent
+    SignupComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,

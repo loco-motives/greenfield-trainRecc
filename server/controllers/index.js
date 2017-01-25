@@ -19,9 +19,9 @@ var users = {
 };
 
 var signup = {
-  // get: function(req, res){
-  //     res.render('/signup');
-  // }
+  get: function(req, res){
+      res.render('/signup');
+  },
   post: function(req, res){
     console.log('req.body object is: ', req.body);
     var username = req.body.username;
@@ -29,7 +29,7 @@ var signup = {
 
     if(!username || !password) {
       req.flash('error', 'Please fill out all fields');
-      // res.redirect('signup');
+      res.redirect('signup');
     }
 
     var salt = bcrypt.genSaltSync(10);
@@ -46,7 +46,7 @@ var signup = {
       res.redirect('/');
   }). catch( (err) => {
       req.flash('error', 'Please choose a different username');
-      // res.redirect('/signup');
+      res.redirect('/signup');
     });
   }
 };
