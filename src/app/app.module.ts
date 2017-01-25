@@ -17,6 +17,7 @@ import { SignupComponent } from './login/signup/signup.component';
 import { SignupService} from './signup/signup.service';
 import { LoginService } from './login/login.service';
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -40,7 +41,7 @@ import { LoginService } from './login/login.service';
     ]),
     MaterialModule.forRoot()
   ],
-  providers: [ApiService, SignupService],
+  providers: [ApiService, SignupService, LoginService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
