@@ -1,0 +1,10 @@
+.killme {
+    width: 40%;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: white;
+    margin-top: 10%;
+    border-radius: 25px;
+    border: groove;
+   border-color: darkgray;
+}
