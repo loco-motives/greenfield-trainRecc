@@ -9,12 +9,14 @@ import { HomeComponent } from './home/home.component';
 import { SongFormComponent } from './song-form/song-form.component';
 
 import { ApiService } from './song-form/api.service';
+import { SignupComponent } from './signup/signup.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    SongFormComponent
+    SongFormComponent,
+    SignupComponent
   ],
   imports: [
     BrowserModule,
