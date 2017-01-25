@@ -14,8 +14,8 @@ import { ApiService } from './song-form/api.service';
 import { LoginComponent } from './login/login.component';
 import { FormComponent } from './login/form/form.component';
 import { SignupComponent } from './login/signup/signup.component';
-import { SignupService} from './signup/signup.service';
-import { LoginService } from './login/login.service';
+import { SignupService} from './login/signup/signup.service';
+import { LoginService } from './login/form/login.service';
 
 
 @NgModule({

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { LoginService } from './login.service';
 
 @Component({
     selector: 'app-login-form',
@@ -6,4 +7,24 @@ import { Component, OnInit } from '@angular/core';
     styleUrls: ['./form.component.css']
 })
 
-export class FormComponent {}
+export class FormComponent {
+  loginUsername: string;
+  loginPassword: string;
+
+  constructor(private loginService: LoginService) { }
+
+  ngOnInit() {
+  }
+
+  submitLogin = () => {
+    this.loginService.login(this.loginUsername, this.loginPassword)
+      .subscribe(res => {
+        this.loginUsername = '';
+        this.loginPassword = '';
+      }, err => {
+        console.log('err', err)
+      });
+  }
+
+    
+}
