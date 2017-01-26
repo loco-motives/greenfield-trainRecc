@@ -1,5 +1,5 @@
 var Sequelize = require('sequelize');
-module.exports.sequelize = new Sequelize('trdb', 'root', 'root', {
+module.exports.sequelize = new Sequelize('trdb', 'root', '', {
   host: 'localhost',
   dialect: 'mysql',
 });
@@ -27,12 +27,16 @@ module.exports.Song = this.sequelize.define('songs', {
   pending: Sequelize.BOOLEAN,
   playCount: Sequelize.INTEGER,
   songSourcePath: Sequelize.STRING,
-  imgSourcePath: Sequelize.STRING,
   trackNum: Sequelize.INTEGER
 });
 
 module.exports.Tag = this.sequelize.define('tags', {
   text: Sequelize.STRING
+});
+
+module.exports.UserFav = this.sequelize.define('userFav', {
+  userId: Sequelize.INTEGER,
+  trainId: Sequelize.INTEGER
 });
 
 this.User.belongsToMany(this.Train, {through: 'UserTrain'});
