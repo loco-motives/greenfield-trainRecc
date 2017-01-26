@@ -2,14 +2,16 @@ var bcrypt = require('bcryptjs'),
   request = require('request'),
   rp = require('request-promise'),
   path = require('path'),
-  fs = require('fs'),
-  cheerio = require('cheerio'),
-  userModel = require('../../db/index.js').User;
+  fs = require('fs');
+
+var userModel = require('../../db/index.js').User,
+  util = require('../utils/utility');
 
 const hypemCookie = 'AUTH=03%3A45dcd553c82cccb5165dfff1dfedc88f%3A1484958954%3A1245621796%3ACA-US';
 const hypemHost = 'hypem.com';
 const hypemSearch = 'http://hypem.com/search/';
 const hypemServe = 'http://hypem.com/serve/source/';
+const headers = { 'Cookie': hypemCookie, 'Host': hypemHost};
 
 var users = {
   get: function(req, res){
@@ -56,27 +58,35 @@ var findHypemSongs = {
     console.log('Serving request for ', req.method, 'where url is ', req.url);
 
     var songQuery = req.body.songQuery.replace(/ /g, '%20');
-    var headers = { 'Cookie': hypemCookie, 'Host': hypemHost};
-    var trackTitle;
-    var artist;
-    var tracks;
-
     rp.get({ url: hypemSearch + songQuery + '/1/', headers: headers})
       .then(html => {
-        let $ = cheerio.load(html);
-        tracks = JSON.parse($('#displayList-data').remove().html()).tracks;
-        trackTitle = tracks[0].song.replace(/ /g, '_');
-        artist = tracks[0].artist.replace(/ /, '_');
+        let tracks = util.getTracks(html);
+        res.send(tracks.slice(0, 3));
+      }).catch(err => {
+        console.log('err', err);
+        res.send(err);
+      });
+  }
+};
 
-        return rp.get({ url: hypemServe + tracks[0].id + '/' + tracks[0].key, headers: headers });
-      }).then(scObj => {
+var getHypemSong = {
+  post: (req, res) => {
+    console.log('Serving request for ', req.method, 'where url is ', req.url);
+
+    var track = req.body.track;
+    var song = track.song.replace(/ /g, '_');
+    var artist = track.artist.replace(/ /g, '_');
+    var pathToMp3 = path.join(__dirname, '../../mp3s/') + song + '_' + artist + '.mp3';
+
+    rp.get({ url: hypemServe + track.id + '/' + track.key, headers: headers})
+      .then(scObj => {
         return rp.get(JSON.parse(scObj).url)
           .on('error', err => {
             console.log('err', err);
             res.send(err);
-          }).pipe(fs.createWriteStream(path.join(__dirname, '../../mp3s/') + trackTitle + '_' + artist + '.mp3'));
+          }).pipe(fs.createWriteStream(pathToMp3));
       }).then(successRes => {
-        res.send(tracks.slice(0, 3));
+        res.send({pathToMp3: pathToMp3});
       }).catch(err => {
         console.log('err', err);
         res.send(err);
@@ -87,5 +97,6 @@ var findHypemSongs = {
 module.exports = {
   users: users,
   signup: signup,
-  findHypemSongs: findHypemSongs
+  findHypemSongs: findHypemSongs,
+  getHypemSong: getHypemSong
 };

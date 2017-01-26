@@ -1,8 +1,12 @@
 <input placeholder="Search for song" [(ngModel)]="songToSearch">
 <button (click)="searchForSong()">Song to add</button>
 <ul>
-  <li *ngFor="let songResult of songResults;">
+  <li class="song" (click)="addSong(i)" *ngFor="let songResult of songResults; let i = index; trackBy: trackByFn">
     <p>{{songResult.artist}}</p>
     <p>{{songResult.song}}</p>
   </li>
 </ul>
+
+<audio controls *ngIf="displayAudioTag" autoplay>
+  <source src="{{songToPlay}}" type="audio/mpeg">
+</audio>
