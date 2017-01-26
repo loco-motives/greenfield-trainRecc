@@ -44,6 +44,32 @@ var train = {
       console.log('train created');
       res.redirect('/');
     });
+  },
+
+  get: (req, res) => {
+    res.send([{
+      id: 1,
+      name: 'train1',
+      imgUrl: 'https://ichef.bbci.co.uk/images/ic/960x540/p02gl3rc.jpg',
+      maxTracks: -1,
+      creatorId: 8,
+      songs: [{
+          title: 'train1track1'
+        }, {
+          title: 'train1track2'
+      }]
+    }, {
+      id: 2,
+      name: 'train2',
+      imgUrl: 'http://static.stereogum.com/uploads/2013/08/DeathGrips-640x426.jpg',
+      maxTracks: -1,
+      creatorId: 8,
+      songs: [{
+          title: 'train2track1'
+        }, {
+          title: 'train2track2'
+      }]
+    }]);
   }
 }
 

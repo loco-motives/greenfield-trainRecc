@@ -1,0 +1,16 @@
+<p>HI IM FAVTRAINS</p>
+
+<div *ngFor='let train of trains'>
+  <div>
+    <img class='trainImg' [src]='train.imgUrl'>
+    <p>train name:</p>
+    {{train.name}}
+    <ul *ngFor='let song of train.songs'>
+      <li>
+        song title: 
+        {{song.title}}
+        <!--song player-->
+      </li>
+    </ul>
+  </div>
+</div>

@@ -18,6 +18,8 @@ import { SignupService} from './login/signup/signup.service';
 import { LoginService } from './login/form/login.service';
 import { SearchComponent } from './search/search.component';
 import { CreateTrainComponent } from './create-train/create-train.component';
+import { FavTrainsComponent } from './fav-trains/fav-trains.component';
+import { GetTrainsService } from './services/get-trains.service';
 
 
 @NgModule({
@@ -29,7 +31,8 @@ import { CreateTrainComponent } from './create-train/create-train.component';
     SignupComponent,
     LoginComponent,
     SearchComponent,
-    CreateTrainComponent
+    CreateTrainComponent,
+    FavTrainsComponent
   ],
   imports: [
     BrowserModule,
@@ -41,11 +44,12 @@ import { CreateTrainComponent } from './create-train/create-train.component';
         { path: 'form', component: FormComponent },
         { path: 'signup', component: SignupComponent}
       ]},
-      { path: 'songForm', component: SongFormComponent }
+      { path: 'songForm', component: SongFormComponent },
+      {path: 'favTrains', component: FavTrainsComponent}
     ]),
     MaterialModule.forRoot()
   ],
-  providers: [ApiService, SignupService, LoginService],
+  providers: [ApiService, SignupService, LoginService, GetTrainsService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
