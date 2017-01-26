@@ -9,4 +9,8 @@ export class ApiService {
   getRelevantSongs(songQuery) {
     return this._http.post('/api/hypemSongs', {songQuery: songQuery});
   }
+
+  addSong(track) {
+    return this._http.post('/api/getHypemSong', {track: track})
+  }
 }

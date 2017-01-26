@@ -1,8 +1,6 @@
 var Sequelize = require('sequelize');
-module.exports.sequelize = new Sequelize('trdb', 'root', '', {
-  host: 'localhost',
-  dialect: 'mysql',
-});
+
+module.exports.sequelize = new Sequelize('mysql://admin:BBNDHLISQBDHSULK@aws-us-west-2-portal.1.dblayer.com:15686/compose');
 
 module.exports.User = this.sequelize.define('users', {
   username: {

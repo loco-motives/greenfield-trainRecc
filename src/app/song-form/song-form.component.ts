@@ -10,6 +10,8 @@ export class SongFormComponent implements OnInit {
   songToSearch: string;
 
   public songResults = [];
+  public songToPlay = '';
+  public displayAudioTag = false;
 
   constructor(public apiService: ApiService) { }
 
@@ -23,5 +25,19 @@ export class SongFormComponent implements OnInit {
     }, err => {
       console.log('err', err);
     });;
+  }
+
+  addSong = idx => {
+    this.apiService.addSong(this.songResults[idx]).subscribe(res => {
+      this.displayAudioTag = true;
+      this.songToPlay = res.json().pathToMp3;
+
+      // var audio = new Audio();
+      // audio.src = res.json().pathToMp3;
+      // audio.load();
+      // audio.play();
+    }, err => {
+      console.log('err', err);
+    })
   }
 }
