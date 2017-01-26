@@ -14,5 +14,6 @@ router.post('/login', passport.authenticate('local', {
 }));
 
 router.post('/hypemSongs', controller.findHypemSongs.post);
+router.post('/getHypemSong', controller.getHypemSong.post);
 
 module.exports = router;

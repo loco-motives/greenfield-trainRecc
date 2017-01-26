@@ -25,9 +25,10 @@ export class FormComponent {
         console.log('err', err)
       });
   }
-
+  
     flag = () => {
         //add class fadeIn to element
         //in the css, give that class the fadeIn stuff
     }
+
 }
