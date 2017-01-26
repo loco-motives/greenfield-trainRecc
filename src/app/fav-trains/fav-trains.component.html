@@ -1,0 +1,13 @@
+<template *ngFor='let train of trains'>
+  <div>
+    <img class='trainImg' ng-src='{{train.imgUrl}}'>
+    <p>name:</p>
+    {{train.name}}
+    <ul *ngFor='let song of train.songs'>
+      <li>
+        {{song.name}}
+        <!--song player-->
+      </li>
+    </ul>
+  </div>
+</div>
