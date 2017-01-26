@@ -1,4 +1,38 @@
-.app-sidenav {
-    height: 100%;
-    background-color: black;
+#sidebar-wrapper {
+  border-bottom-left-radius: 20px;
+  border-top-left-radius: 20px;
+  width: 150px;
+  border-top: groove;
+  border-left: groove;
+  border-bottom: groove;
+  border-color: darkred;
+  height: 99.99%;
+  display: inline;
+}
+
+#wrapper {
+  display: inline;
+}
+
+#name {
+  margin-left: 10px;
+  border-bottom: groove;
+  border-color: darkred;
+}
+
+.killme {
+  display: inline-block;
+  width:20%;
+  margin-left: 10px;
+  margin-top: 10%;
+}
+
+.login {
+   margin-top: 3%;
+   margin-left: 5px;
+   border: groove;
+   border-color: darkgray;
+   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+   filter: blur(0.4px);
+   background-color: darkred;
 }
