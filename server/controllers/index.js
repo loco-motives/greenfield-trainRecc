@@ -4,7 +4,9 @@ var bcrypt = require('bcryptjs'),
   path = require('path'),
   fs = require('fs'),
   cheerio = require('cheerio'),
-  userModel = require('../../db/index.js').User;
+  userModel = require('../../db/index.js').User,
+  trainModel = require('../../db').Train,
+  songModel = require('../../db').Song;
 
 const hypemCookie = 'AUTH=03%3A45dcd553c82cccb5165dfff1dfedc88f%3A1484958954%3A1245621796%3ACA-US';
 const hypemHost = 'hypem.com';
@@ -17,6 +19,49 @@ var users = {
     res.send('got');
   }
 };
+
+var train = {
+  post: (req, res) => {
+    var name = req.body.name;
+    var imgUrl = req.body.imgurl;
+    var creatorId = req.session.passport.user;
+
+    var newTrain = {
+      name: name,
+      likeCount: 0, 
+      imgUrl: imgUrl,
+      maxTracks: null,
+      creatorId: creatorId,
+      conductorId: creatorId
+    }
+
+    trainModel.create(newTrain).then( () => {
+      console.log('train created');
+      res.redirect('/');
+    });
+  }
+}
+
+var song = {
+  post: (req, res) => {
+    rp.get('/api/getTrainSongs?' + req.body.trainId)
+      .then( trainRes => {
+        var newSong = {
+          title: req.body.title,
+          pending: req.body.pending,
+          playCount: 0,
+          songSourcePath: req.body.songSourcePath,
+          trainId: req.body.trainId,
+          trackNum: trainRes.numOfSongs
+        }
+
+        songModel.create(newSong).then( () => {
+          console.log('song created');
+          res.redirect('/');
+        });
+      });
+  }
+}
 
 var signup = {
   get: function(req, res){
@@ -44,7 +89,7 @@ var signup = {
     userModel.create(newUser).then( () => {
       console.log('user created');
       res.redirect('/');
-  }). catch( (err) => {
+      }).catch( (err) => {
       req.flash('error', 'Please choose a different username');
       res.redirect('/signup');
     });
@@ -60,7 +105,6 @@ var findHypemSongs = {
     var trackTitle;
     var artist;
     var tracks;
-
     rp.get({ url: hypemSearch + songQuery + '/1/', headers: headers})
       .then(html => {
         let $ = cheerio.load(html);
@@ -87,5 +131,6 @@ var findHypemSongs = {
 module.exports = {
   users: users,
   signup: signup,
-  findHypemSongs: findHypemSongs
+  findHypemSongs: findHypemSongs,
+  train: train
 };

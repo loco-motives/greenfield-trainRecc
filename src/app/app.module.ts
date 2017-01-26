@@ -16,6 +16,8 @@ import { FormComponent } from './login/form/form.component';
 import { SignupComponent } from './login/signup/signup.component';
 import { SignupService} from './login/signup/signup.service';
 import { LoginService } from './login/form/login.service';
+import { SearchComponent } from './search/search.component';
+import { CreateTrainComponent } from './create-train/create-train.component';
 
 
 @NgModule({
@@ -25,7 +27,9 @@ import { LoginService } from './login/form/login.service';
     SongFormComponent,
     FormComponent,
     SignupComponent,
-    LoginComponent
+    LoginComponent,
+    SearchComponent,
+    CreateTrainComponent
   ],
   imports: [
     BrowserModule,
