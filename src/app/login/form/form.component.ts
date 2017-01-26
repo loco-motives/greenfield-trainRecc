@@ -6,4 +6,11 @@ import { Component, OnInit } from '@angular/core';
     styleUrls: ['./form.component.css']
 })
 
-export class FormComponent {}
+export class FormComponent {
+
+    flag = () => {
+        //add class fadeIn to element
+        //in the css, give that class the fadeIn stuff
+    }
+
+}
