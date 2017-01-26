@@ -44,7 +44,8 @@ import { GetTrainsService } from './services/get-trains.service';
         { path: 'form', component: FormComponent },
         { path: 'signup', component: SignupComponent}
       ]},
-      { path: 'songForm', component: SongFormComponent }
+      { path: 'songForm', component: SongFormComponent },
+      {path: 'favTrains', component: FavTrainsComponent}
     ]),
     MaterialModule.forRoot()
   ],

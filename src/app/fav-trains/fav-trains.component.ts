@@ -13,7 +13,8 @@ export class FavTrainsComponent implements OnInit {
   ngOnInit() {
     this.getTrainsService.getTrains()
       .subscribe(res => {
-        this.trains = res;
+        console.log('res.json is: ', res.json());
+        this.trains = res.json();
       });
   }
 
