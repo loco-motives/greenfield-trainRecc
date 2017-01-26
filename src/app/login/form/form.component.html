@@ -2,15 +2,15 @@
 
   <table style="width: 100%" cellspacing="3"><tr>
     <td><md-input-container style="width: 100%">
-      <input required md-input placeholder="Email">
+      <input required md-input [(ngModel)]='loginUsername' placeholder="Username">
     </md-input-container></td>
     <td><md-input-container style="width: 100%">
-      <input required md-input placeholder="Password">
+      <input required md-input [(ngModel)]='loginPassword' placeholder="Password">
     </md-input-container></td>
   </tr></table>
 
   <p>
-    <button md-raised-button color='warn' routerLink="" class='login' > LOGIN </button>
+    <button md-raised-button color='warn' (click)='submitLogin()'  routerLink="" class='login' > LOGIN </button>
 
     <md-input-container width="100%">
       <textarea md-input placeholder="social media placeholder" value=""></textarea>
