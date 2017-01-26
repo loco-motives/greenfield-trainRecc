@@ -106,13 +106,10 @@ var findHypemSongs = {
     console.log('Serving request for ', req.method, 'where url is ', req.url);
 
     var songQuery = req.body.songQuery.replace(/ /g, '%20');
-<<<<<<< HEAD
-=======
     var headers = { 'Cookie': hypemCookie, 'Host': hypemHost};
     var trackTitle;
     var artist;
     var tracks;
->>>>>>> dev
     rp.get({ url: hypemSearch + songQuery + '/1/', headers: headers})
       .then(html => {
         let tracks = util.getTracks(html);
@@ -153,9 +150,6 @@ module.exports = {
   users: users,
   signup: signup,
   findHypemSongs: findHypemSongs,
-<<<<<<< HEAD
-  getHypemSong: getHypemSong
-=======
+  getHypemSong: getHypemSong,
   train: train
->>>>>>> dev
 };
