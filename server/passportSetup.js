@@ -1,9 +1,9 @@
 var passport = require('passport'),
     LocalStrategy = require('passport-local').Strategy,
     bcrypt = require('bcryptjs'),
-    userModel = require('.././db/index.js').User;
+    userModel = require('.././db').User;
 
-module.exports = (app) => {
+module.exports = app => {
     app.use(passport.initialize());
     app.use(passport.session());
 
@@ -29,8 +29,7 @@ module.exports = (app) => {
     ));
 
     passport.serializeUser( (user, done) => {
-        console.log('serializeUser');
-        done(null, user.id);
+        done(null, user.dataValues.id);
     });
 
     passport.deserializeUser( (id, done) => {
