@@ -21,11 +21,6 @@ export class FavTrainsComponent implements OnInit {
       .subscribe(res => {
         console.log('res.json is: ', res.json());
         this.trains = res.json();
-        this.trains.forEach(trainObj => {
-          trainObj.songs.forEach(songObj => {
-            songObj.songSourcePath = this.sanitize(songObj.songSourcePath);
-          });
-        });
         console.log('this.trains:',this.trains)
       });
   }
