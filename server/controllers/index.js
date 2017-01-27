@@ -22,7 +22,12 @@ var train = {
   get: (req, res) => {
     console.log('Serving request for ', req.method, 'where url is ', req.url);
 
-    res.send('train get');
+    models.getFavoritedTrains(req.session.passport.user)
+      .then(trains => {
+        res.send(trains);
+      }).catch(err => {
+        res.status(500).send(err);
+      });
   },
   post: (req, res) => {
     console.log('Serving request for ', req.method, 'where url is ', req.url);
