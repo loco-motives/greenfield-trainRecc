@@ -11,6 +11,23 @@ export class ApiService {
   }
 
   addSong(track) {
-    return this._http.post('/api/getHypemSong', {track: track})
+    return this._http.post('/api/getHypemSongPath', {track: track})
+  }
+
+  userSubmitsTrain(trainInfo) {
+    console.log('trainInfo', trainInfo);
+    this._http.post('/api/addtrain', trainInfo).subscribe(res => {
+      console.log('res', res.json());
+    }, err => {
+      console.log('err', err);
+    })
+  }
+
+  testSession() {
+    this._http.get('/api/testsession').subscribe(res => {
+      console.log('res', res);
+    }, err => {
+      console.log('err', err);
+    });
   }
 }

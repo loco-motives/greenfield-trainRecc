@@ -1,5 +1,13 @@
 .song {
-  border: 1px solid red;
+  border: 1px solid green;
   cursor: pointer;
   margin-bottom: 5px;
+}
+
+.train-form {
+  border: 1px solid darkblue;
+}
+
+.selected-song {
+  border: 1px solid red;
 }
