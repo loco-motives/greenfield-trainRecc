@@ -1,6 +1,6 @@
-<body>
+<div class='bground'>
 
-    <md-card  class='killme'>
+<md-card  class='killme'>
 
     <md-input-container width="100%">
       <textarea md-input placeholder="Train Name" value=""></textarea>
@@ -22,6 +22,7 @@
 
 </md-card>
 
+<app-fav-trains></app-fav-trains>
 
 <div id="wrapper">
 
@@ -30,32 +31,17 @@
             <ul class="sidebar-nav">
                 <li class="sidebar-brand">
                     <a href="#" id='name'>
-                        Train-Recc
+                        T r a i n R e c c
                     </a>
                 </li>
                 <li>
-                    <a href="#">Dashboard</a>
+                    <input placeholder="Search tags" [(ngModel)]="tagsToSearch" class='tagsearch'>
                 </li>
-                <li>
-                    <a href="#">Shortcuts</a>
-                </li>
-                <li>
-                    <a href="#">Overview</a>
-                </li>
-                <li>
-                    <a href="#">Events</a>
-                </li>
-                <li>
-                    <a href="#">About</a>
-                </li>
-                <li>
-                    <a href="#">Services</a>
-                </li>
-                <li>
-                    <a href="#">Contact</a>
-                </li>
+                
+
+                <button md-raised-button class='logout' routerLink='login'>Logout</button>
             </ul>
         </div>
         <!-- /#sidebar-wrapper -->
   </div>
-</body>
+</div>
