@@ -57,6 +57,15 @@ var train = {
 };
 
 var tags = {
+  get: (req, res) => {
+    models.getTrainsByTag(req.url.substr(req.url.indexOf('?') + 1))
+      .then(trains => {
+        res.send(trains);
+    }).catch(err => {
+      res.status(500).send(err);
+    });
+  },
+
   post: (req, res) => {
     console.log('Serving request for ', req.method, 'where url is ', req.url);
     console.log('req.body', req.body);

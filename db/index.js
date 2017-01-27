@@ -37,7 +37,7 @@ module.exports.UserFav = this.sequelize.define('userFav', {
   userId: Sequelize.INTEGER, 
   trainId: Sequelize.INTEGER,
   trainName: Sequelize.STRING,
-  trainImg: Sequelize.STRING
+  trainImg: Sequelize.STRING,
 });
 
 this.User.belongsToMany(this.Train, {through: 'UserTrain'});
