@@ -44,13 +44,10 @@ var train = {
     trainModel.create(newTrain).then(createdTrain => {
       newTrainId = createdTrain.dataValues.id;
       return models.favTrain(req.body.name, req.body.imgurl, newTrainId, req.session.passport.user);
-    }).then(response => {
-      return rp.post({url: 'http://localhost:3000/api/addsong', form: {track: req.body.selectedTrack, trainId: newTrainId}});
-    }).then(response => {
-      return models.addTags(req.body.tags.split(' '));
-    }).then(response => {
-      return models.getFavoritedTrains(req.session.passport.user);
-    }).then(trains => {
+    }).then(response => models.addSong(req.body.selectedTrack, newTrainId)
+    ).then(response => models.addTags(req.body.tags.split(' '), newTrainId)
+    ).then(response => models.getFavoritedTrains(req.session.passport.user)
+    ).then(trains => {
       res.send(trains);
     }).catch(err => {
       console.log('err', err);
