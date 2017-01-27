@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HomeService } from './home.service';
-import { ApiService } from '../song-form/api.service';
+import { ApiService } from '../services/api.service';
 
 
 @Component({
@@ -16,14 +16,19 @@ export class HomeComponent implements OnInit {
   trainImgPath: string;
   trainTags: string;
 
+
   public songResults = [];
   public songToPlay = '';
   public displayAudioTag = false;
-  public selectedTrack = {};
+  public selectedTrack = {
+    song: 'Select your song below',
+    ph: ''
+  };
   public trains = [];
 
   ngOnInit() {
   }
+
 
   logout() {
     this.homeService.logout().subscribe(res => {
@@ -31,7 +36,7 @@ export class HomeComponent implements OnInit {
     });
   }
 
-    searchForSong = () => {
+  searchForSong = () => {
     this.apiService.getRelevantSongs(this.songToSearch).subscribe(res => {
       this.songToSearch = '';
       this.songResults = res.json();
@@ -42,6 +47,7 @@ export class HomeComponent implements OnInit {
 
   firstSongInTrain = idx => {
     this.selectedTrack = this.songResults[idx];
+    this.selectedTrack.ph = ':';
   }
 
   createTrain = () => {
@@ -55,7 +61,4 @@ export class HomeComponent implements OnInit {
     this.apiService.userSubmitsTrain(opts);
   }
 
-  testSession = () => {
-    this.apiService.testSession();
-  }
 }
