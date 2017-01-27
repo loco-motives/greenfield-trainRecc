@@ -1,3 +1,5 @@
+const moment = require('moment');
+
 const sequelize = require('../../db').sequelize;
 const trainModel = require('../../db').Train;
 const songModel = require('../../db').Song;
@@ -76,16 +78,17 @@ var addSong = (track, trainId, pending = false) => {
 
 var addTags = (tags, trainId) => {
   console.log('tags', tags);
-  return;
+
   return Promise.all(
     tags.map(tag => {
       return tagModel.create({
         text: tag
       }).then(createdTag => {
-        console.log('createdTag', createdTag.dataValues.id);
-
-        return sequelize.query('INSERT INTO TrainTag (trainId, tagId) value (?, ?)',{
-          replacements : [trainId.toString(), createdTag.dataValues.id.toString()], type: sequelize.QueryTypes.INSERT
+        let currDate = moment().format();
+        currDate = currDate.replace('T', ' ').substr(0, currDate.lastIndexOf('-'))
+        return sequelize.query('INSERT INTO TrainTag (trainId, tagId, createdAt, updatedAt) value (?, ?, ?, ?)',{
+          replacements : [trainId.toString(), createdTag.dataValues.id.toString(), currDate, currDate],
+          type: sequelize.QueryTypes.INSERT
         });
       });
     })

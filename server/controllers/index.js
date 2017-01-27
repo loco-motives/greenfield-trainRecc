@@ -45,7 +45,7 @@ var train = {
       newTrainId = createdTrain.dataValues.id;
       return models.favTrain(req.body.name, req.body.imgurl, newTrainId, req.session.passport.user);
     }).then(response => models.addSong(req.body.selectedTrack, newTrainId)
-    ).then(response => models.addTags(req.body.tags.split(' '))
+    ).then(response => models.addTags(req.body.tags.split(' '), newTrainId)
     ).then(response => models.getFavoritedTrains(req.session.passport.user)
     ).then(trains => {
       res.send(trains);
