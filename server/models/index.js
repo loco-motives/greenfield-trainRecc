@@ -56,20 +56,21 @@ var favTrain = (trainName, trainImg, trainId, userId) => {
 };
 
 var addSong = (track, trainId, pending = false) => {
+  var mp3path;
   return util.getHypemSongPath(track)
     .then(pathToMp3 => {
-      return getAllSongsFromTrain(trainId)
-        .then(songs => {
-          return songModel.create({
-            title: track.song,
-            artist: track.artist,
-            pending: pending,
-            playCount: 0,
-            songSourcePath: pathToMp3,
-            trainId: trainId,
-            trackNum: songs.length
-          });
-        });
+      mp3path = pathToMp3;
+      return getAllSongsFromTrain(trainId);
+    }).then(songs => {
+      return songModel.create({
+        title: track.song,
+        artist: track.artist,
+        pending: pending,
+        playCount: 0,
+        songSourcePath: mp3path,
+        trainId: trainId,
+        trackNum: songs.length
+      });
     });
 };
 
