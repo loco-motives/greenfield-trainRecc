@@ -4,54 +4,87 @@ var bcrypt = require('bcryptjs'),
 var userModel = require('../../db/index.js').User,
   userModel = require('../../db/index.js').User,
   trainModel = require('../../db').Train,
-  songModel = require('../../db').Song;
+  songModel = require('../../db').Song,
+  userFavModel = require('../../db').UserFav,
+  hypemCtrl = require('./hypem');
+
+const util = require('../utils/utility');
+const models = require('../models');
 
 var users = {
   get: function(req, res){
     console.log('Serving request for ', req.method, 'where url is ', req.url);
-    res.send('got');
+    res.send('users get');
   }
 };
 
 var train = {
-  post: (req, res) => {
-    var name = req.body.name;
-    var imgUrl = req.body.imgurl;
-    var creatorId = req.session.passport.user;
+  get: (req, res) => {
+    console.log('Serving request for ', req.method, 'where url is ', req.url);
 
+    res.send('train get');
+  },
+  post: (req, res) => {
+    console.log('Serving request for ', req.method, 'where url is ', req.url);
     var newTrain = {
-      name: name,
-      likeCount: 0, 
-      imgUrl: imgUrl,
-      maxTracks: null,
-      creatorId: creatorId,
-      conductorId: creatorId
+      name: req.body.name,
+      likeCount: 0,
+      imgUrl: req.body.imgurl,
+      maxTracks: -1,
+      creatorId: req.session.passport ? req.session.passport.user : 50,
+      conductorId: req.session.passport ? req.session.passport.user : 50
     };
 
-    trainModel.create(newTrain).then( () => {
-      console.log('train created');
-      res.redirect('/');
-    });
+    var newTrainId;
+    trainModel.create(newTrain).then(createdTrain => {
+      newTrainId = createdTrain.dataValues.id;
+      return models.favTrain(req.body.name, req.body.imgurl, newTrainId, req.session.passport ? req.session.passport.user : 50);
+    }).then(response => {
+      return rp.post({url: 'http://localhost:3000/api/addsong', form: {track: req.body.selectedTrack, trainId: newTrainId}});
+    }).then(response => {
+      return models.addTags(req.body.tags.split(' '));
+    }).then(response => {
+      return models.getFavoritedTrains(req.session.passport ? req.session.passport.user : 50);
+    }).then(trains => {
+      res.send(trains);
+    }).catch(err => {
+      console.log('err', err);
+      res.status(500).send(err);
+    }); 
+  }
+};
+
+var tags = {
+  post: (req, res) => {
+    console.log('Serving request for ', req.method, 'where url is ', req.url);
+    console.log('req.body', req.body);
+    res.send('tags post');
   }
 };
 
 var song = {
   post: (req, res) => {
-    rp.get('/api/getTrainSongs?' + req.body.trainId)
-      .then( trainRes => {
-        var newSong = {
-          title: req.body.title,
-          pending: req.body.pending,
-          playCount: 0,
-          songSourcePath: req.body.songSourcePath,
-          trainId: req.body.trainId,
-          trackNum: trainRes.numOfSongs
-        };
-
-        songModel.create(newSong).then( () => {
-          console.log('song created');
-          res.redirect('/');
-        });
+    console.log('Serving request for ', req.method, 'where url is ', req.url);
+    util.getHypemSongPath(req.body.track)
+      .then(pathToMp3 => {
+        models.getAllSongsFromTrain(req.body.trainId)
+          .then(songs => {
+            songModel.create({
+              title: req.body.track.song,
+              artist: req.body.track.artist,
+              pending: !!req.body.pending,
+              playCount: 0,
+              songSourcePath: pathToMp3,
+              trainId: req.body.trainId,
+              trackNum: songs.length
+            }).then(createdSong => {
+              res.send('song POST');
+            }).catch(err => {
+              res.status(500).send(err);
+            });
+          });
+      }).catch(err => {
+        res.send('err', err);
       });
   }
 };
@@ -89,10 +122,37 @@ var signup = {
   }
 };
 
+var favPlaylist = {
+  post: (req, res) => {
+    console.log('Serving request for ', req.method, 'where url is ', req.url);
+
+    var userId = req.session.passport ? req.session.passport.user : req.body.user;
+    userFavModel.create({
+      userId: userId,
+      trainId: req.body.trainId
+    }).then(createdUserFav => {
+      res.send('favPlaylist POST');
+    }).catch(err => {
+      res.status(500).send(err);
+    });
+  }
+};
+
+var testSession = {
+  get: (req, res) => {
+    console.log('Serving request for ', req.method, 'where url is ', req.url);
+    console.log('req.session', req.session);
+    res.send('testSession GET');
+  }
+};
+
 module.exports = {
-  findHypemSongs: require('./hypem').findHypemSongs,
-  getHypemSong: require('./hypem').getHypemSong,
+  findHypemSongs: hypemCtrl.findHypemSongs,
   users: users,
   signup: signup,
-  train: train
+  train: train,
+  tags: tags,
+  testSession: testSession,
+  favPlaylist: favPlaylist,
+  song: song
 };
