@@ -77,8 +77,6 @@ var addSong = (track, trainId, pending = false) => {
 };
 
 var addTags = (tags, trainId) => {
-  console.log('tags', tags);
-
   return Promise.all(
     tags.map(tag => {
       return tagModel.create({
@@ -86,7 +84,7 @@ var addTags = (tags, trainId) => {
       }).then(createdTag => {
         let currDate = moment().format();
         currDate = currDate.replace('T', ' ').substr(0, currDate.lastIndexOf('-'))
-        return sequelize.query('INSERT INTO TrainTag (trainId, tagId, createdAt, updatedAt) value (?, ?, ?, ?)',{
+        return sequelize.query('INSERT INTO TrainTag (trainId, tagId, createdAt, updatedAt) value (?, ?, ?, ?)', {
           replacements : [trainId.toString(), createdTag.dataValues.id.toString(), currDate, currDate],
           type: sequelize.QueryTypes.INSERT
         });
@@ -95,10 +93,57 @@ var addTags = (tags, trainId) => {
   );
 };
 
+var getTrainsByTag = tagName => {
+  return tagModel.findAll({
+    where: {
+      text: tagName
+    }
+  }).then(tags => {
+    return Promise.all(
+      tags.map(tag => {
+        let tagId = tag.dataValues.id;
+        let foundTrain;
+        return sequelize.query('SELECT * FROM TrainTag WHERE tagId=' + tagId, {
+          type: sequelize.QueryTypes.SELECT
+        }).then(trainTag => {
+          console.log('trainTag', trainTag);
+          return trainModel.findOne({
+            where: {
+              id: trainTag[0].trainId
+            }
+          });
+        }).then(train => {
+          foundTrain = train;
+          return songModel.findAll({
+            where: {
+              trainId: train.dataValues.id
+            }
+          });
+        }).then(songs => {
+          let mappedTrain = {
+            songs: songs.map(song => {
+              return {
+                title: song.dataValues.title,
+                artist: song.dataValues.artist,
+                songSourcePath: song.dataValues.songSourcePath
+              };
+            }),
+            trainId: foundTrain.dataValues.id,
+            trainName: foundTrain.dataValues.name,
+            trainImg: foundTrain.dataValues.imgUrl
+          };
+          return mappedTrain;
+        });
+      })
+    );
+  });
+};
+
 module.exports = {
   getAllSongsFromTrain: getAllSongsFromTrain,
   addTags: addTags,
   getFavoritedTrains: getFavoritedTrains,
   favTrain: favTrain,
-  addSong: addSong
+  addSong: addSong,
+  getTrainsByTag: getTrainsByTag
 };

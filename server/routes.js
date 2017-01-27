@@ -3,6 +3,10 @@ var controller = require('./controllers');
 var passport = require('passport');
 var path = require('path');
 
+router.get('/users', controller.users.get);
+router.get('/signup', controller.signup.get);
+router.get('/trains', controller.train.get);
+router.get('/trainsbytag', controller.tags.get);
 
 router.get('/gettrainsongs', controller.train.get);
 router.get('/media/play.svg', (req, res) => {
@@ -18,9 +22,6 @@ router.get('/media/pause.svg', (req, res) => {
     res.sendFile(path.resolve(__dirname + '/media/pause.svg'));
 });
 
-router.get('/users', controller.users.get);
-router.get('/signup', controller.signup.get);
-router.get('/trains', controller.train.get);
 router.get('/logout', (req, res) => {
     console.log('logged user out');
     req.logout();
