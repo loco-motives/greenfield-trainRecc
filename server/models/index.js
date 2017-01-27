@@ -77,8 +77,6 @@ var addSong = (track, trainId, pending = false) => {
 };
 
 var addTags = (tags, trainId) => {
-  console.log('tags', tags);
-
   return Promise.all(
     tags.map(tag => {
       return tagModel.create({
@@ -86,7 +84,7 @@ var addTags = (tags, trainId) => {
       }).then(createdTag => {
         let currDate = moment().format();
         currDate = currDate.replace('T', ' ').substr(0, currDate.lastIndexOf('-'))
-        return sequelize.query('INSERT INTO TrainTag (trainId, tagId, createdAt, updatedAt) value (?, ?, ?, ?)',{
+        return sequelize.query('INSERT INTO TrainTag (trainId, tagId, createdAt, updatedAt) value (?, ?, ?, ?)', {
           replacements : [trainId.toString(), createdTag.dataValues.id.toString(), currDate, currDate],
           type: sequelize.QueryTypes.INSERT
         });
@@ -95,10 +93,53 @@ var addTags = (tags, trainId) => {
   );
 };
 
+var getTrainsByTag = tagName => {
+  return tagModel.findAll({
+    where: {
+      text: tagName
+    }
+  }).then(tags => {
+    return Promise.All(
+      tags.map(tag => {
+        let tagId = tag.dataValues.id;
+        return sequelize.query('SELECT * FROM TrainTag WHERE (tagId) value (?)', {
+          replacements: [tagId], type: sequelize.QueryTypes.SELECT
+        }).then(trainTag => {
+          return trainModel.findOne({
+            where: {
+              id: trainTag.dataValues.trainId
+            }
+          }).then(train => {
+            return songModel.findAll({
+              where: {
+                trainId: train.dataValues.id
+              }
+            }).then(songs => {
+              train.songs = songs.map(song => {
+                return {
+                  title: song.title,
+                  artist: song.artist,
+                  songSourcePath: song.songSourcePath
+                };
+              });
+              return {
+                songs: train.songs,
+                trainName: train.dataValues.trainName,
+                trainImg: train.dataValues.trainImg
+              };
+            });
+          });
+        });
+      })
+    );
+  });
+};
+
 module.exports = {
   getAllSongsFromTrain: getAllSongsFromTrain,
   addTags: addTags,
   getFavoritedTrains: getFavoritedTrains,
   favTrain: favTrain,
-  addSong: addSong
+  addSong: addSong,
+  getTrainsByTag: getTrainsByTag
 };
