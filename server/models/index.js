@@ -1,9 +1,13 @@
+const moment = require('moment');
+
 const sequelize = require('../../db').sequelize;
 const trainModel = require('../../db').Train;
 const songModel = require('../../db').Song;
 const userModel = require('../../db').User;
 const tagModel = require('../../db').Tag;
 const userFavModel = require('../../db').UserFav;
+
+const util = require('../utils/utility');
 
 var getAllSongsFromTrain = trainId => {
   return songModel.findAll({
@@ -14,7 +18,6 @@ var getAllSongsFromTrain = trainId => {
 };
 
 var getFavoritedTrains = userId => {
-  console.log('userId', userId);
   return userFavModel.findAll({
     where: {
       userId: userId
@@ -34,12 +37,11 @@ var getFavoritedTrains = userId => {
               songSourcePath: song.songSourcePath
             };
           });
-          var trainObj = {
+          return {
             songs: train.songs,
             trainName: train.trainName,
             trainImg: train.trainImg
           };
-          return trainObj;
         });
       })
     );
@@ -55,6 +57,25 @@ var favTrain = (trainName, trainImg, trainId, userId) => {
     });
 };
 
+var addSong = (track, trainId, pending = false) => {
+  var mp3path;
+  return util.getHypemSongPath(track)
+    .then(pathToMp3 => {
+      mp3path = pathToMp3;
+      return getAllSongsFromTrain(trainId);
+    }).then(songs => {
+      return songModel.create({
+        title: track.song,
+        artist: track.artist,
+        pending: pending,
+        playCount: 0,
+        songSourcePath: mp3path,
+        trainId: trainId,
+        trackNum: songs.length
+      });
+    });
+};
+
 var addTags = (tags, trainId) => {
   console.log('tags', tags);
 
@@ -63,44 +84,21 @@ var addTags = (tags, trainId) => {
       return tagModel.create({
         text: tag
       }).then(createdTag => {
-        console.log('createdTag', createdTag.dataValues.id);
-
-        // sequelize.query("INSERT INTO TrainTag (trainId, tagId) VALUES (" + trainId.toString() + ', ' + createdTag.dataValues.id.toString())
-        //   .spread(function(results, metadata) {
-        //     // Results will be an empty array and metadata will contain the number of affected rows.
-        //     console.log('results', results);
-        //     console.log('metadata', metadata);
-        //   });
-
-        // trainModel.addTag({
-        //   where: {
-        //     tagId: createdTag.dataValues.id
-        //   }
-        // }).then(createdSomething => {
-        //   console.log('createdSomething', createdSomething);
-        // });
+        let currDate = moment().format();
+        currDate = currDate.replace('T', ' ').substr(0, currDate.lastIndexOf('-'))
+        return sequelize.query('INSERT INTO TrainTag (trainId, tagId, createdAt, updatedAt) value (?, ?, ?, ?)',{
+          replacements : [trainId.toString(), createdTag.dataValues.id.toString(), currDate, currDate],
+          type: sequelize.QueryTypes.INSERT
+        });
       });
     })
   );
-  //   answers.map(oneAnswer => {
-  //     return models.Solution.findOrCreate({
-  //       where: {
-  //         name: oneAnswer,
-  //         LibraryId: LibId
-  //       },
-  //       defaults: {
-  //         name: oneAnswer,
-  //         length: [...oneAnswer].length,
-  //         LibraryId: LibId
-  //       }
-  //     });
-  //   })
-  // )
 };
 
 module.exports = {
   getAllSongsFromTrain: getAllSongsFromTrain,
   addTags: addTags,
   getFavoritedTrains: getFavoritedTrains,
-  favTrain: favTrain
+  favTrain: favTrain,
+  addSong: addSong
 };
