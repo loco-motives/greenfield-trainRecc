@@ -21,6 +21,7 @@ app.use(flash());
 setupPassport(app);
 app.use('/api', router);
 
+
 var port = 3000;
 app.listen(port, function(){
   console.log('App listening on port', port);
