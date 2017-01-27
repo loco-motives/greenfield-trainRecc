@@ -11,15 +11,14 @@
   <link href="css/bootstrap.css" rel="stylesheet">
   <link href="css/simple-sidebar.css" rel="stylesheet">
   <link href="css/bootstrap.min.css" rel="stylesheet">
-  <link href='./soundmanager/bar-ui.css' rel='stylesheet'>
+  <link href='./audioplayer/index.css' rel='stylesheet'>
     
-  <script src="./soundmanager/script/soundmanager2.js"></script>
-  <script src='./soundmanager/bar-ui.js'></script> 
+  <script src="/./audioplayer/audio.min.js"></script>
   <script>
-  soundManager.setup({
-    url: './soundmanager/swf'
+  audiojs.events.ready(function() {
+    var as = audiojs.createAll();
   });
-  </script>
+</script>
 
 </head>
 <body>
