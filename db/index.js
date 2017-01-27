@@ -22,6 +22,7 @@ module.exports.Train = this.sequelize.define('trains', {
 
 module.exports.Song = this.sequelize.define('songs', {
   title: Sequelize.STRING,
+  artist: Sequelize.STRING,
   pending: Sequelize.BOOLEAN,
   playCount: Sequelize.INTEGER,
   songSourcePath: Sequelize.STRING,
@@ -33,8 +34,10 @@ module.exports.Tag = this.sequelize.define('tags', {
 });
 
 module.exports.UserFav = this.sequelize.define('userFav', {
-  userId: Sequelize.INTEGER,
-  trainId: Sequelize.INTEGER
+  userId: Sequelize.INTEGER, 
+  trainId: Sequelize.INTEGER,
+  trainName: Sequelize.STRING,
+  trainImg: Sequelize.STRING
 });
 
 this.User.belongsToMany(this.Train, {through: 'UserTrain'});
@@ -46,8 +49,8 @@ this.Song.belongsTo(this.User);
 this.Train.hasMany(this.Song);
 this.Song.belongsTo(this.Train);
 
-this.User.belongsToMany(this.Tag, {through: 'UserTag'});
-this.Tag.belongsToMany(this.User, {through: 'UserTag'});
+this.Train.belongsToMany(this.Tag, {through: 'TrainTag'});
+this.Tag.belongsToMany(this.Train, {through: 'TrainTag'});
 
 this.sequelize.sync({
   // force: true

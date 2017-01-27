@@ -15,7 +15,8 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(session({ 
   secret: 'trainrecc',
   resave: false,
-  saveUninitialized: false
+  saveUninitialized: false,
+  cookie: { maxAge: 6000000 }
 }));
 app.use(flash());
 setupPassport(app);

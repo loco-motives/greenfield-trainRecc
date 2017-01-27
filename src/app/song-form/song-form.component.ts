@@ -8,10 +8,15 @@ import { ApiService } from './api.service';
 })
 export class SongFormComponent implements OnInit {
   songToSearch: string;
+  trainName: string;
+  trainImgPath: string;
+  trainTags: string;
 
   public songResults = [];
   public songToPlay = '';
   public displayAudioTag = false;
+  public selectedTrack = {};
+  public trains = [];
 
   constructor(public apiService: ApiService) { }
 
@@ -24,20 +29,25 @@ export class SongFormComponent implements OnInit {
       this.songResults = res.json();
     }, err => {
       console.log('err', err);
-    });;
+    });
   }
 
-  addSong = idx => {
-    this.apiService.addSong(this.songResults[idx]).subscribe(res => {
-      this.displayAudioTag = true;
-      this.songToPlay = res.json().pathToMp3;
+  firstSongInTrain = idx => {
+    this.selectedTrack = this.songResults[idx];
+  }
 
-      // var audio = new Audio();
-      // audio.src = res.json().pathToMp3;
-      // audio.load();
-      // audio.play();
-    }, err => {
-      console.log('err', err);
-    })
+  createTrain = () => {
+    var opts = {
+      selectedTrack: this.selectedTrack,
+      name: this.trainName,
+      imgurl: this.trainImgPath,
+      tags: this.trainTags
+    }
+    console.log('opts', opts);
+    this.apiService.userSubmitsTrain(opts);
+  }
+
+  testSession = () => {
+    this.apiService.testSession();
   }
 }
