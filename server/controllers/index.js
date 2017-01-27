@@ -45,7 +45,7 @@ var train = {
       newTrainId = createdTrain.dataValues.id;
       return models.favTrain(req.body.name, req.body.imgurl, newTrainId, req.session.passport.user);
     }).then(response => {
-      return rp.post({url: 'http://localhost:3000/api/addsong', form: {track: req.body.selectedTrack, trainId: newTrainId}});
+      return models.addSong(req.body.selectedTrack, newTrainId);
     }).then(response => {
       return models.addTags(req.body.tags.split(' '));
     }).then(response => {
