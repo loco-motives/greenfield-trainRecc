@@ -9,7 +9,7 @@ import { ApiService } from '../song-form/api.service';
 })
 export class HomeComponent implements OnInit {
 
-  constructor(private homeService: HomeService) { }
+  constructor(private homeService: HomeService, private apiService: ApiService) { }
   songToSearch: string;
   trainName: string;
   trainImgPath: string;
@@ -20,8 +20,6 @@ export class HomeComponent implements OnInit {
   public displayAudioTag = false;
   public selectedTrack = {};
   public trains = [];
-
-  constructor(private homeService: HomeService, private apiService: ApiService) { }
 
   ngOnInit() {
   }

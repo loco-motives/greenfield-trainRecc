@@ -15,6 +15,7 @@ export class FavTrainsComponent implements OnInit {
       .subscribe(res => {
         console.log('res.json is: ', res.json());
         this.trains = res.json();
+        console.log('this.trains:',this.trains)
       });
   }
 
