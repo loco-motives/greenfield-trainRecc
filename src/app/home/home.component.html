@@ -37,9 +37,9 @@
                 <li>
                     <input placeholder="Search tags" [(ngModel)]="tagsToSearch" class='tagsearch'>
                 </li>
-                
-
-                <button md-raised-button class='logout' routerLink='login'>Logout</button>
+                <li>
+                    <button md-raised-button color='warn' routerLink="login" class='login' (click)='logout()'> Logout </button>
+                </li>
             </ul>
         </div>
         <!-- /#sidebar-wrapper -->
