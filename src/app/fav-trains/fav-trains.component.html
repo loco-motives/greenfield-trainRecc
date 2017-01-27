@@ -2,7 +2,7 @@
 <md-list id="listwrap">
   <md-list *ngFor='let train of trains' class='train'>
     <div>
-      <img class='trainImg' [src]='train.imgUrl'>
+      <img class='trainImg' [src]='train.trainImg'>
       {{train.name}}
       <div *ngFor='let song of train.songs' id='songlist'>
         <div>
@@ -58,7 +58,7 @@
             <!-- playlist content is mirrored here -->
           <div class="sm2-playlist-wrapper">
             <ul class="sm2-playlist-bd">
-            <li class="selected"><a [href]='song.songSourcePath'>{{song.title}}</a></li>
+            <li class="selected"><a href="http://www.gorillavsbear.net/files/2011/01/06-Lord-Knows-Best.mp3">{{song.title}}</a></li>
             <!--for testing, use this href="http://www.gorillavsbear.net/files/2011/01/06-Lord-Knows-Best.mp3"-->
             </ul>
           </div>
