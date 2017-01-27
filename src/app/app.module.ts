@@ -20,6 +20,7 @@ import { SearchComponent } from './search/search.component';
 import { CreateTrainComponent } from './create-train/create-train.component';
 import { FavTrainsComponent } from './fav-trains/fav-trains.component';
 import { GetTrainsService } from './services/get-trains.service';
+import { HomeService } from './home/home.service';
 
 
 @NgModule({
@@ -49,7 +50,7 @@ import { GetTrainsService } from './services/get-trains.service';
     ]),
     MaterialModule.forRoot()
   ],
-  providers: [ApiService, SignupService, LoginService, GetTrainsService],
+  providers: [ApiService, SignupService, LoginService, GetTrainsService, HomeService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
