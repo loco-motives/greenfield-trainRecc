@@ -1,0 +1,87 @@
+.song {
+  cursor: pointer;
+}
+
+ul {
+  list-style-type: none;
+}
+
+li {
+  margin: 20px;
+  padding-left: 0px;
+  margin-left: -15px;
+}
+
+#sidebar-wrapper {
+  border-bottom-left-radius: 50px;
+  border-top-left-radius: 50px;
+  width: 150px;
+  border-top: groove;
+  border-left: groove;
+  border-bottom: groove;
+  border-color: darkred;
+  height: 99.99%;
+  display: inline;
+  opacity: .7;
+  background-color: ghostwhite;
+  border-width: 2px;
+}
+
+#wrapper {
+  display: inline;
+  position: fixed;
+}
+
+#name {
+  margin-left: 5%;
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  border-bottom: groove;
+  border-color: darkred;
+  color: darkred;
+}
+
+.killme {
+  display: inline-block;
+  width:20%;
+  margin-left: 10px;
+  margin-top: 12%;
+  opacity: .8;
+  border-radius: 20px;
+  border: groove;
+  border-color: darkred;
+  border-width: 1px;
+}
+
+.login {
+   margin-top: 3%;
+   margin-left: 5px;
+   border: groove;
+   border-color: darkgray;
+   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+   filter: blur(0.4px);
+   background-color: darkred;
+}
+
+.tagsearch {
+  height: 20px;
+  width: 45%;
+  border-radius: 5px;
+}
+
+.logout {
+  bottom: 0;
+  text-align: center;
+  margin-left: 13%;
+  margin-top: 210%;
+  border: groove;
+  border-color: darkred;
+  
+}
+
+.bground {
+  background-image: url('../../assets/giphy-1.gif');
+    background-size: cover;
+    min-width: 400px;
+    min-height: 710px;
+    background-repeat: no-repeat;
+}
