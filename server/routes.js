@@ -3,6 +3,8 @@ var controller = require('./controllers');
 var passport = require('passport');
 var path = require('path');
 
+
+router.get('/gettrainsongs', controller.train.get);
 router.get('/media/play.svg', (req, res) => {
     res.sendFile(path.resolve(__dirname + '/media/play.svg'));
 });
