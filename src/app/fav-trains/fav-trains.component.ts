@@ -19,4 +19,8 @@ export class FavTrainsComponent implements OnInit {
       });
   }
 
+  console = () => {
+    
+  }
+
 }
