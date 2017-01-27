@@ -17,7 +17,6 @@ import { SignupComponent } from './login/signup/signup.component';
 import { SignupService} from './login/signup/signup.service';
 import { LoginService } from './login/form/login.service';
 import { SearchComponent } from './search/search.component';
-import { CreateTrainComponent } from './create-train/create-train.component';
 import { FavTrainsComponent } from './fav-trains/fav-trains.component';
 import { GetTrainsService } from './services/get-trains.service';
 
@@ -31,7 +30,6 @@ import { GetTrainsService } from './services/get-trains.service';
     SignupComponent,
     LoginComponent,
     SearchComponent,
-    CreateTrainComponent,
     FavTrainsComponent
   ],
   imports: [
