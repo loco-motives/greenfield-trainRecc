@@ -5,7 +5,7 @@ var path = require('path');
 
 router.get('/users', controller.users.get);
 router.get('/signup', controller.signup.get);
-router.get('/gettrainsongs', controller.train.get);
+router.get('/trains', controller.train.get);
 
 router.get('/media/play.svg', (req, res) => {
     res.sendFile(path.resolve(__dirname + '/media/play.svg'));
@@ -33,7 +33,6 @@ router.post('/addtrain', controller.train.post);
 router.post('/addtags', controller.tags.post);
 router.post('/favplaylist', controller.favPlaylist.post);
 router.post('/hypemSongs', controller.findHypemSongs.post);
-
 
 router.get('/testsession', controller.testSession.get);
 module.exports = router;
