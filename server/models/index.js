@@ -99,36 +99,40 @@ var getTrainsByTag = tagName => {
       text: tagName
     }
   }).then(tags => {
-    return Promise.All(
+    return Promise.all(
       tags.map(tag => {
         let tagId = tag.dataValues.id;
-        return sequelize.query('SELECT * FROM TrainTag WHERE (tagId) value (?)', {
-          replacements: [tagId], type: sequelize.QueryTypes.SELECT
+        let foundTrain;
+        return sequelize.query('SELECT * FROM TrainTag WHERE tagId=' + tagId, {
+          type: sequelize.QueryTypes.SELECT
         }).then(trainTag => {
+          console.log('trainTag', trainTag);
           return trainModel.findOne({
             where: {
-              id: trainTag.dataValues.trainId
+              id: trainTag[0].trainId
             }
-          }).then(train => {
-            return songModel.findAll({
-              where: {
-                trainId: train.dataValues.id
-              }
-            }).then(songs => {
-              train.songs = songs.map(song => {
-                return {
-                  title: song.title,
-                  artist: song.artist,
-                  songSourcePath: song.songSourcePath
-                };
-              });
-              return {
-                songs: train.songs,
-                trainName: train.dataValues.trainName,
-                trainImg: train.dataValues.trainImg
-              };
-            });
           });
+        }).then(train => {
+          foundTrain = train;
+          return songModel.findAll({
+            where: {
+              trainId: train.dataValues.id
+            }
+          });
+        }).then(songs => {
+          let mappedTrain = {
+            songs: songs.map(song => {
+              return {
+                title: song.dataValues.title,
+                artist: song.dataValues.artist,
+                songSourcePath: song.dataValues.songSourcePath
+              };
+            }),
+            trainId: foundTrain.dataValues.id,
+            trainName: foundTrain.dataValues.name,
+            trainImg: foundTrain.dataValues.imgUrl
+          };
+          return mappedTrain;
         });
       })
     );
