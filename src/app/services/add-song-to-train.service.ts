@@ -7,14 +7,14 @@ export class AddSongToTrainService {
   constructor(private _http: Http) { }
 
   addSong(songObj, trainId) {
-    var body = {};
-    body.trainId = trainId;
-    body.songTitle = songObj.song;
-    body.songId = songObj.id;
-    body.songKey = song.key;
-    body.songArtist = songObj.artist;
-    //what was songImg again?
-    return _http.post('/api/addsongtotrain', body);
+    var body = {
+      trainId: trainId,
+      songTitle: songObj.song,
+      songId: songObj.id,
+      songKey: songObj.key,
+      songArtist: songObj.artist
+    };
+    return this._http.post('/api/addsongtotrain', body);
   }
 
 }

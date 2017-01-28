@@ -2,21 +2,12 @@ var bcrypt = require('bcryptjs'),
   rp = require('request-promise');
 
 var userModel = require('../../db/index.js').User,
-  userModel = require('../../db/index.js').User,
   trainModel = require('../../db').Train,
   songModel = require('../../db').Song,
-  userFavModel = require('../../db').UserFav,
   hypemCtrl = require('./hypem');
 
 const util = require('../utils/utility');
 const models = require('../models');
-
-var users = {
-  get: function(req, res){
-    console.log('Serving request for ', req.method, 'where url is ', req.url);
-    res.send('users get');
-  }
-};
 
 var train = {
   get: (req, res) => {
@@ -31,23 +22,21 @@ var train = {
   },
   post: (req, res) => {
     console.log('Serving request for ', req.method, 'where url is ', req.url);
+
     var newTrain = {
       name: req.body.name,
-      likeCount: 0,
       imgUrl: req.body.imgurl,
-      maxTracks: -1,
       creatorId: req.session.passport.user,
-      conductorId: req.session.passport.user
     };
 
     var newTrainId;
     trainModel.create(newTrain).then(createdTrain => {
       newTrainId = createdTrain.dataValues.id;
       return models.favTrain(req.body.name, req.body.imgurl, newTrainId, req.session.passport.user);
-    }).then(response => models.addSong(req.body.selectedTrack, newTrainId)
-    ).then(response => models.addTags(req.body.tags.split(' '), newTrainId)
-    ).then(response => models.getFavoritedTrains(req.session.passport.user)
-    ).then(trains => {
+    }).then(response => models.addSong(req.body.selectedTrack, newTrainId))
+      .then(response => models.addTags(req.body.tags.split(' '), newTrainId))
+      .then(response => models.getFavoritedTrains(req.session.passport.user))
+      .then(trains => {
       res.send(trains);
     }).catch(err => {
       console.log('err', err);
@@ -58,6 +47,8 @@ var train = {
 
 var tags = {
   get: (req, res) => {
+    console.log('Serving request for ', req.method, 'where url is ', req.url);
+
     models.getTrainsByTag(req.url.substr(req.url.indexOf('?') + 1))
       .then(trains => {
         res.send(trains);
@@ -65,12 +56,6 @@ var tags = {
       res.status(500).send(err);
     });
   },
-
-  post: (req, res) => {
-    console.log('Serving request for ', req.method, 'where url is ', req.url);
-    console.log('req.body', req.body);
-    res.send('tags post');
-  }
 };
 
 var song = {
@@ -131,7 +116,7 @@ var signup = {
   }
 };
 
-var favPlaylist = {
+var favTrain = {
   post: (req, res) => {
     console.log('Serving request for ', req.method, 'where url is ', req.url);
 
@@ -140,28 +125,18 @@ var favPlaylist = {
       userId: userId,
       trainId: req.body.trainId
     }).then(createdUserFav => {
-      res.send('favPlaylist POST');
+      res.send('User: ' + userId + ' has favorited train: ' + req.body.trainId);
     }).catch(err => {
       res.status(500).send(err);
     });
   }
 };
 
-var testSession = {
-  get: (req, res) => {
-    console.log('Serving request for ', req.method, 'where url is ', req.url);
-    console.log('req.session', req.session);
-    res.send('testSession GET');
-  }
-};
-
 module.exports = {
   findHypemSongs: hypemCtrl.findHypemSongs,
-  users: users,
   signup: signup,
   train: train,
   tags: tags,
-  testSession: testSession,
-  favPlaylist: favPlaylist,
-  song: song
+  song: song,
+  favTrain: favTrain
 };
