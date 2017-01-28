@@ -33,7 +33,7 @@ li {
 }
 
 #name {
-  margin-left: 5%;
+  margin-left: 10%;
   font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
   border-bottom: groove;
   border-color: darkred;
@@ -92,6 +92,25 @@ li {
   position: fixed;
 }
 
+.search {
+   margin-left: 13%;
+   border: groove;
+   border-color: darkgray;
+   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+   filter: blur(0.4px);
+   background-color: darkred;
+}
+
+.logout {
+    margin-top: 200%;
+   margin-left: 13%;
+   border: groove;
+   border-color: darkgray;
+   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+   filter: blur(0.4px);
+   background-color: darkred;
+}
+
 .song {
   cursor: pointer;
   border-bottom: 1px ridge grey;
@@ -113,16 +132,7 @@ li {
   height: 20px;
   width: 45%;
   border-radius: 5px;
-}
-
-.logout {
-  bottom: 0;
-  text-align: center;
-  margin-left: 13%;
-  margin-top: 210%;
-  border: groove;
-  border-color: darkred;
-  
+  margin-left: 6%;
 }
 
 .bground {

@@ -29,10 +29,6 @@
     width: 100%;
 }
 
-.s1 {
-    display: inline-block;
-}
-
 md-list {
     padding-top: 0px;
 }
@@ -67,7 +63,9 @@ md-list {
 }
 
 .link {
-    background-image: url('../../assets/chain.png')
+    display: inline-block;
+    height: 60%;
+    width: 8%;
 }
 
 .sm2-bar-ui .sm2-inline-texture {
