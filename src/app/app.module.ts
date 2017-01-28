@@ -21,6 +21,7 @@ import { FavTrainsComponent } from './fav-trains/fav-trains.component';
 import { GetTrainsService } from './services/get-trains.service';
 import { HomeService } from './home/home.service';
 import { AddSongToTrainService } from './services/add-song-to-train.service';
+import { SearchTagService} from '/services/search-tag-service';
 
 
 @NgModule({
@@ -49,7 +50,7 @@ import { AddSongToTrainService } from './services/add-song-to-train.service';
     ]),
     MaterialModule.forRoot()
   ],
-  providers: [ApiService, SignupService, LoginService, GetTrainsService, HomeService],
+  providers: [ApiService, SignupService, LoginService, GetTrainsService, HomeService, AddSongToTrainService, SearchTagService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
