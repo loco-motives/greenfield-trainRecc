@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewEncapsulation, ChangeDetectionStrategy } from '@angular/core';
 import { GetTrainsService } from '../services/get-trains.service';
+
 @Component({
   selector: 'app-fav-trains',
   templateUrl: './fav-trains.component.html',
@@ -8,7 +9,11 @@ import { GetTrainsService } from '../services/get-trains.service';
 export class FavTrainsComponent implements OnInit {
   public trains;
 
-  constructor(private getTrainsService: GetTrainsService ) { }
+  constructor(private getTrainsService: GetTrainsService) { }
+
+  sanitize(path) {
+    return this.sanitizer.bypassSecurityTrustUrl(path);
+  }
 
   ngOnInit() {
     this.getTrainsService.getTrains()
