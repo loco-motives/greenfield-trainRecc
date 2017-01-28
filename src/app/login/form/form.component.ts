@@ -30,11 +30,13 @@ export class FormComponent {
         console.log('err', err)
       });
 
-    this.getTrainsService.getTrains()
-      .subscribe(res => {
+      this.getTrainsService.getTrains()
+        .subscribe(res => {
         console.log('res.json is: ', res.json());
         this.trains = res.json();
       });
+      
+
   }
   
     flag = () => {
