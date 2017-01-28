@@ -5,9 +5,9 @@
       <img class='trainImg' [src]='train.trainImg'>
       {{train.name}}
       <div *ngFor='let song of train.songs' id='songlist'>
-        <audio src='http://www.gorillavsbear.net/mp3-dirty-beaches-lord-knows-best/' preload="auto"></audio>
-        <!--[src]="song.songSourcePath"-->
-        <div>{{song.title}}</div>
+          <p><em>{{song.title}}</em> by {{song.artist}}</p>
+          <audio controls='controls' src='http://www.gorillavsbear.net/files/2011/01/06-Lord-Knows-Best.mp3'>
+          </audio>
       </div>
     </div>
   </md-list>
