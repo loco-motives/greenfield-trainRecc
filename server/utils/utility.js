@@ -3,6 +3,14 @@ const path = require('path');
 const rp = require('request-promise');
 const fs = require('fs');
 
+const S3FS = require('s3fs');
+const s3fsImpl = new S3FS('mpthrees', {
+  accessKeyId: 'AKIAIWDLUSLK2V5PWL4Q',
+  secretAccessKey: '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'
+});
+
+s3fsImpl.create();
+
 const hypemCookie = 'AUTH=03%3A45dcd553c82cccb5165dfff1dfedc88f%3A1484958954%3A1245621796%3ACA-US';
 const hypemHost = 'hypem.com';
 const hypemServe = 'http://hypem.com/serve/source/';
@@ -19,14 +27,15 @@ var getTracks = html => {
 var getHypemSongPath = track => {
   var song = track.song.replace(/ /g, '_');
   var artist = track.artist.replace(/ /g, '_');
-  var pathToMp3 = path.join(__dirname, '../../mp3s/') + song + '_' + artist + '.mp3';
+  var fileName = song + '_' + artist + '.mp3';
+  var pathToMp3 = 'https://s3.amazonaws.com/mpthrees/' + fileName;
 
   return rp.get({ url: hypemServe + track.id + '/' + track.key, headers: headers})
     .then(scObj => {
       return rp.get(JSON.parse(scObj).url)
         .on('error', err => {
           console.log('err', err);
-        }).pipe(fs.createWriteStream(pathToMp3));
+    }).pipe(s3fsImpl.createWriteStream(fileName));
     }).then(res => {
       return pathToMp3;
     });
