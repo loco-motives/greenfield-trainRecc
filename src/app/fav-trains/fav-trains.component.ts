@@ -11,10 +11,6 @@ export class FavTrainsComponent implements OnInit {
 
   constructor(private getTrainsService: GetTrainsService) { }
 
-  sanitize(path) {
-    return this.sanitizer.bypassSecurityTrustUrl(path);
-  }
-
   ngOnInit() {
     this.getTrainsService.getTrains()
       .subscribe(res => {
