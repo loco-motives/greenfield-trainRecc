@@ -3,12 +3,11 @@ var controller = require('./controllers');
 var passport = require('passport');
 var path = require('path');
 
-router.get('/users', controller.users.get);
 router.get('/signup', controller.signup.get);
 router.get('/trains', controller.train.get);
+router.get('/gettrainsongs', controller.train.get);
 router.get('/trainsbytag', controller.tags.get);
 
-router.get('/gettrainsongs', controller.train.get);
 router.get('/media/play.svg', (req, res) => {
     res.sendFile(path.resolve(__dirname + '/media/play.svg'));
 });
@@ -27,8 +26,10 @@ router.get('/logout', (req, res) => {
     req.logout();
 });
 
-router.post('/create', controller.train.post);
 router.post('/addsongtotrain', controller.song.post);
+router.post('/addtrain', controller.train.post);
+router.post('/favtrain', controller.favTrain.post);
+router.post('/hypemSongs', controller.findHypemSongs.post);
 router.post('/signup', controller.signup.post);
 router.post('/login', passport.authenticate('local', {
     successRedirect:'/',
@@ -36,9 +37,5 @@ router.post('/login', passport.authenticate('local', {
     failureFlash: true
 }));
 
-router.post('/addtrain', controller.train.post);
-router.post('/addtags', controller.tags.post);
-router.post('/favplaylist', controller.favPlaylist.post);
-router.post('/hypemSongs', controller.findHypemSongs.post);
 
 module.exports = router;
