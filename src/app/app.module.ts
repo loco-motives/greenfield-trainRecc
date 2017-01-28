@@ -20,6 +20,7 @@ import { SearchComponent } from './search/search.component';
 import { FavTrainsComponent } from './fav-trains/fav-trains.component';
 import { GetTrainsService } from './services/get-trains.service';
 import { HomeService } from './home/home.service';
+import { AddSongToTrainService } from './services/add-song-to-train.service';
 
 
 @NgModule({
