@@ -13,18 +13,13 @@ module.exports.User = this.sequelize.define('users', {
 
 module.exports.Train = this.sequelize.define('trains', {
   name: Sequelize.STRING,
-  likeCount: Sequelize.INTEGER, 
   imgUrl: Sequelize.STRING,
-  maxTracks: Sequelize.INTEGER,
-  creatorId: Sequelize.INTEGER, //what type is a foreign key?
-  conductorId: Sequelize.INTEGER, //what type is a foreign key?
+  creatorId: Sequelize.INTEGER
 });
 
 module.exports.Song = this.sequelize.define('songs', {
   title: Sequelize.STRING,
   artist: Sequelize.STRING,
-  pending: Sequelize.BOOLEAN,
-  playCount: Sequelize.INTEGER,
   songSourcePath: Sequelize.STRING,
   trackNum: Sequelize.INTEGER
 });

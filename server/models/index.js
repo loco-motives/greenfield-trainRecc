@@ -67,8 +67,6 @@ var addSong = (track, trainId) => {
       return songModel.create({
         title: track.song,
         artist: track.artist,
-        pending: pending,
-        playCount: 0,
         songSourcePath: mp3path,
         trainId: trainId,
         trackNum: songs.length
