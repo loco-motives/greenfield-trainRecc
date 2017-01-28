@@ -30,16 +30,12 @@ var getHypemSongPath = track => {
   var fileName = song + '_' + artist + '.mp3';
   var pathToMp3 = 'https://s3.amazonaws.com/mpthrees/' + fileName;
 
-  // s3fsImpl.writeFile('withkevin.txt', 'Just changed this text', function (err) {
-  //   if (err) throw err;
-  //   console.log('Its saved!');
-  // });
   return rp.get({ url: hypemServe + track.id + '/' + track.key, headers: headers})
     .then(scObj => {
       return rp.get(JSON.parse(scObj).url)
         .on('error', err => {
           console.log('err', err);
-    }).pipe(/*fs.createWriteStream(pathToMp3)*/s3fsImpl.createWriteStream(fileName/*, stream*/));
+    }).pipe(s3fsImpl.createWriteStream(fileName));
     }).then(res => {
       return pathToMp3;
     });
