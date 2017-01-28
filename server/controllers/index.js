@@ -76,6 +76,7 @@ var tags = {
 var song = {
   post: (req, res) => {
     console.log('Serving request for ', req.method, 'where url is ', req.url);
+
     util.getHypemSongPath(req.body.track)
       .then(pathToMp3 => {
         models.getAllSongsFromTrain(req.body.trainId)
@@ -83,8 +84,6 @@ var song = {
             songModel.create({
               title: req.body.track.song,
               artist: req.body.track.artist,
-              pending: !!req.body.pending,
-              playCount: 0,
               songSourcePath: pathToMp3,
               trainId: req.body.trainId,
               trackNum: songs.length
