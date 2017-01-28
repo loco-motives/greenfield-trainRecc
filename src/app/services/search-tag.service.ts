@@ -6,7 +6,8 @@ export class SearchTagService {
 
   constructor(public _http: Http) { }
 
-  submitTagSerch(inputTag) {
+  submitTagSearch(inputTag) {
+
     return this._http.get('api/trainsbytag?' + inputTag);
   }
 

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HomeService } from './home.service';
-import { ApiService } from '../song-form/api.service';
+import { ApiService } from '../services/api.service';
+import { SearchTagService } from '../services/search-tag.service';
 
 
 @Component({
@@ -10,19 +11,35 @@ import { ApiService } from '../song-form/api.service';
 })
 export class HomeComponent implements OnInit {
 
-  constructor(private homeService: HomeService, private apiService: ApiService) { }
+  constructor(private homeService: HomeService, private apiService: ApiService, private searchTagService: SearchTagService) { }
   songToSearch: string;
   trainName: string;
   trainImgPath: string;
   trainTags: string;
+  tagSearch: string;
+
 
   public songResults = [];
+  public searchResults = [];
   public songToPlay = '';
   public displayAudioTag = false;
-  public selectedTrack = {};
+  public selectedTrack = {
+    song: 'Select your song below',
+    ph: ''
+  };
   public trains = [];
+  public testForGabe = true;
 
   ngOnInit() {
+  }
+
+  search () {
+    // this.testForGabe = !this.testForGabe
+    this.searchTagService.submitTagSearch(this.tagSearch)
+    .subscribe(res => {
+      console.log(res.json())
+      this.searchResults = res.json();
+    })
   }
 
   logout() {
@@ -31,7 +48,7 @@ export class HomeComponent implements OnInit {
     });
   }
 
-    searchForSong = () => {
+  searchForSong = () => {
     this.apiService.getRelevantSongs(this.songToSearch).subscribe(res => {
       this.songToSearch = '';
       this.songResults = res.json();
@@ -42,6 +59,7 @@ export class HomeComponent implements OnInit {
 
   firstSongInTrain = idx => {
     this.selectedTrack = this.songResults[idx];
+    this.selectedTrack.ph = ':';
   }
 
   createTrain = () => {
@@ -55,7 +73,4 @@ export class HomeComponent implements OnInit {
     this.apiService.userSubmitsTrain(opts);
   }
 
-  testSession = () => {
-    this.apiService.testSession();
-  }
 }

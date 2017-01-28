@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { LoginService } from './login.service';
+import { GetTrainsService } from '../../services/get-trains.service';
+
 
 @Component({
     selector: 'app-login-form',
@@ -10,11 +12,14 @@ import { LoginService } from './login.service';
 export class FormComponent {
   loginUsername: string;
   loginPassword: string;
+  public trains;
 
-  constructor(private loginService: LoginService) { }
+  constructor(private loginService: LoginService, private getTrainsService: GetTrainsService) { }
 
   ngOnInit() {
   }
+
+  
 
   submitLogin = () => {
     this.loginService.login(this.loginUsername, this.loginPassword)
@@ -24,6 +29,14 @@ export class FormComponent {
       }, err => {
         console.log('err', err)
       });
+
+      this.getTrainsService.getTrains()
+        .subscribe(res => {
+        console.log('res.json is: ', res.json());
+        this.trains = res.json();
+      });
+      
+
   }
   
     flag = () => {

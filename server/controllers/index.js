@@ -48,7 +48,6 @@ var train = {
 var tags = {
   get: (req, res) => {
     console.log('Serving request for ', req.method, 'where url is ', req.url);
-
     models.getTrainsByTag(req.url.substr(req.url.indexOf('?') + 1))
       .then(trains => {
         res.send(trains);

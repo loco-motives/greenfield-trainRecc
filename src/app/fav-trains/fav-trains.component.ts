@@ -11,12 +11,18 @@ export class FavTrainsComponent implements OnInit {
 
   constructor(private getTrainsService: GetTrainsService) { }
   ngOnInit() {
+    setTimeout(() => {
     this.getTrainsService.getTrains()
       .subscribe(res => {
         console.log('res.json is: ', res.json());
         this.trains = res.json();
         console.log('this.trains:',this.trains)
       });
+    }, 200)
+  }
+
+  console = () => {
+    
   }
 
 }
