@@ -79,20 +79,19 @@ var song = {
 
     util.getHypemSongPath(req.body.track)
       .then(pathToMp3 => {
-        models.getAllSongsFromTrain(req.body.trainId)
-          .then(songs => {
-            songModel.create({
-              title: req.body.track.song,
-              artist: req.body.track.artist,
-              songSourcePath: pathToMp3,
-              trainId: req.body.trainId,
-              trackNum: songs.length
-            }).then(createdSong => {
-              res.send('song POST');
-            }).catch(err => {
-              res.status(500).send(err);
-            });
+        return models.getAllSongsFromTrain(req.body.trainId).then(songs => {
+          return songModel.create({
+            title: req.body.track.song,
+            artist: req.body.track.artist,
+            songSourcePath: pathToMp3,
+            trainId: req.body.trainId,
+            trackNum: songs.length
           });
+        });
+      }).then(() => {
+        return models.favTrain(req.body.name, req.body.imgurl, req.body.trainId, req.session.passport.user);
+      }).then(() => {
+        res.send('added song to train: ' + req.body.trainId);
       }).catch(err => {
         res.send('err', err);
       });
