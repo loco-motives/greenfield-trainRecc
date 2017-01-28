@@ -116,7 +116,7 @@ var signup = {
   }
 };
 
-var favPlaylist = {
+var favTrain = {
   post: (req, res) => {
     console.log('Serving request for ', req.method, 'where url is ', req.url);
 
@@ -138,5 +138,5 @@ module.exports = {
   train: train,
   tags: tags,
   song: song,
-  favPlaylist: favPlaylist
+  favTrain: favTrain
 };
