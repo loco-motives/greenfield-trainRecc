@@ -57,7 +57,7 @@ var favTrain = (trainName, trainImg, trainId, userId) => {
     });
 };
 
-var addSong = (track, trainId, pending = false) => {
+var addSong = (track, trainId) => {
   var mp3path;
   return util.getHypemSongPath(track)
     .then(pathToMp3 => {
