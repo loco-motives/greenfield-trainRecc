@@ -93,7 +93,7 @@ li {
 }
 
 .search {
-   margin-left: 13%;
+   margin-left: 18%;
    border: groove;
    border-color: darkgray;
    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -102,8 +102,8 @@ li {
 }
 
 .logout {
-    margin-top: 200%;
-   margin-left: 13%;
+    margin-top: 175%;
+   margin-left: 14%;
    border: groove;
    border-color: darkgray;
    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;

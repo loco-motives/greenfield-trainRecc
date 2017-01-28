@@ -1,4 +1,6 @@
 <div class='bground'>
+  <div *ngIf="testForGabe">
+  
 
 <md-card  class='killme'>
 
@@ -16,7 +18,8 @@
 
     <div class="selected-song" id="slist">
         <p>
-        {{selectedTrack.artist}} by {{selectedTrack.song}}
+        {{selectedTrack.artist}} {{selectedTrack.ph}}
+        {{selectedTrack.song}}
         </p>
     </div>
 
@@ -38,7 +41,6 @@
 <app-fav-trains></app-fav-trains>
 
 <div id="wrapper">
-
         <!-- Sidebar -->
         <div id="sidebar-wrapper">
             <ul class="sidebar-nav">
@@ -47,12 +49,16 @@
                         T r a i n R e c c
                     </a>
                 </li>
-                    <input placeholder="Search tags" [(ngModel)]="tagsToSearch" class='tagsearch'>
-                    <!--<button md-raised-button color='warn' routerLink="" class='search' (click)='search()'> Search </button>-->
-            
+                <li>
+                    <input placeholder="Search tags" [(ngModel)]="tagSearch" class='tagsearch'>
+                    <button md-raised-button color='warn' routerLink="" class='search'  (click)='search()'> Search </button>
+                </li>
+                <!--<li>-->
                     <button md-raised-button color='warn' routerLink="login" class='logout' (click)='logout()'> Logout </button>
+                <!--</li>-->
             </ul>
         </div>
         <!-- /#sidebar-wrapper -->
+  </div>
   </div>
 </div>

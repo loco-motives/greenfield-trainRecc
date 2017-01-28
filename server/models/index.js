@@ -94,6 +94,7 @@ var addTags = (tags, trainId) => {
 };
 
 var getTrainsByTag = tagName => {
+  console.log('tagName', tagName);
   return tagModel.findAll({
     where: {
       text: tagName

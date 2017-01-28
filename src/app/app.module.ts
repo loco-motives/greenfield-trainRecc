@@ -22,6 +22,7 @@ import { GetTrainsService } from './services/get-trains.service';
 import { HomeService } from './home/home.service';
 import { AddSongToTrainService } from './services/add-song-to-train.service';
 import { SearchTagService} from './services/search-tag.service';
+import { SearchpageComponent } from './searchpage/searchpage.component';
 
 
 @NgModule({
@@ -33,7 +34,8 @@ import { SearchTagService} from './services/search-tag.service';
     SignupComponent,
     LoginComponent,
     SearchComponent,
-    FavTrainsComponent
+    FavTrainsComponent,
+    SearchpageComponent
   ],
   imports: [
     BrowserModule,
@@ -46,7 +48,8 @@ import { SearchTagService} from './services/search-tag.service';
         { path: 'signup', component: SignupComponent}
       ]},
       { path: 'songForm', component: SongFormComponent },
-      {path: 'favtrains', component: FavTrainsComponent}
+      { path: 'favtrains', component: FavTrainsComponent },
+      { path: 'search', component: SearchpageComponent}
     ]),
     MaterialModule.forRoot()
   ],

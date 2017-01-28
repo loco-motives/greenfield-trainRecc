@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HomeService } from './home.service';
 import { ApiService } from '../services/api.service';
+import { SearchTagService } from '../services/search-tag.service';
 
 
 @Component({
@@ -10,14 +11,16 @@ import { ApiService } from '../services/api.service';
 })
 export class HomeComponent implements OnInit {
 
-  constructor(private homeService: HomeService, private apiService: ApiService) { }
+  constructor(private homeService: HomeService, private apiService: ApiService, private searchTagService: SearchTagService) { }
   songToSearch: string;
   trainName: string;
   trainImgPath: string;
   trainTags: string;
+  tagSearch: string;
 
 
   public songResults = [];
+  public searchResults = [];
   public songToPlay = '';
   public displayAudioTag = false;
   public selectedTrack = {
@@ -25,10 +28,19 @@ export class HomeComponent implements OnInit {
     ph: ''
   };
   public trains = [];
+  public testForGabe = true;
 
   ngOnInit() {
   }
 
+  search () {
+    // this.testForGabe = !this.testForGabe
+    this.searchTagService.submitTagSearch(this.tagSearch)
+    .subscribe(res => {
+      console.log(res.json())
+      this.searchResults = res.json();
+    })
+  }
 
   logout() {
     this.homeService.logout().subscribe(res => {
