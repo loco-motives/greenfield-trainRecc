@@ -2,11 +2,12 @@ const cheerio = require('cheerio');
 const path = require('path');
 const rp = require('request-promise');
 const fs = require('fs');
-
 const S3FS = require('s3fs');
+
+const aws = require('../awsKeys');
 const s3fsImpl = new S3FS('mpthrees', {
-  accessKeyId: 'AKIAIWDLUSLK2V5PWL4Q',
-  secretAccessKey: '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'
+  accessKeyId: aws.accessKeyId,
+  secretAccessKey: aws.secretAccessKey
 });
 
 s3fsImpl.create();

@@ -41,3 +41,4 @@ Thumbs.db
 
 #TrainRecc
 mp3s/*.mp3
+server/awsKeys.js

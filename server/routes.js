@@ -41,5 +41,4 @@ router.post('/addtags', controller.tags.post);
 router.post('/favplaylist', controller.favPlaylist.post);
 router.post('/hypemSongs', controller.findHypemSongs.post);
 
-router.get('/testsession', controller.testSession.get);
 module.exports = router;
