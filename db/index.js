@@ -20,8 +20,6 @@ module.exports.Train = this.sequelize.define('trains', {
 module.exports.Song = this.sequelize.define('songs', {
   title: Sequelize.STRING,
   artist: Sequelize.STRING,
-  pending: Sequelize.BOOLEAN,
-  playCount: Sequelize.INTEGER,
   songSourcePath: Sequelize.STRING,
   trackNum: Sequelize.INTEGER
 });
