@@ -4,19 +4,22 @@ import { Http } from '@angular/http';
 @Injectable()
 export class AddSongToTrainService {
 
+  private trainToAddTo;
+  public addTrainView = [true];
+
   constructor(private _http: Http) { }
 
-  addSong(songObj, trainId) {
+  addSong(songObj) {
     var body = {
-
-    trainId : trainId,
-    songTitle : songObj.song,
-    songId : songObj.id,
-    songKey : songObj.key,
-    songArtist : songObj.artist
+      trainId : this.trainToAddTo.trainId,
+      track: songObj
     }
-
     return this._http.post('/api/addsongtotrain', body);
   }
 
+  trainToAddSongTo(train) {
+    this.trainToAddTo = train;
+    this.addTrainView.shift();
+    this.addTrainView.push(false);
+  }
 }
