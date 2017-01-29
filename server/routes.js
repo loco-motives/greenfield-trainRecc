@@ -31,11 +31,16 @@ router.post('/addtrain', controller.train.post);
 router.post('/favtrain', controller.favTrain.post);
 router.post('/hypemSongs', controller.findHypemSongs.post);
 router.post('/signup', controller.signup.post);
-router.post('/login', passport.authenticate('local', {
-    successRedirect:'/',
-    failureRedirect: '/login/signup',
-    failureFlash: true
-}));
+router.post('/login', (req, res, next) => {
+    passport.authenticate('local', (err, user, info) => {
+        if(err) return next(err);
+        if(!user) return res.send('false');
+        req.logIn(user, (err) => {
+            if (err) return next(err);
+            return res.send('true');
+        });
+    });
+});
 
 
 module.exports = router;
