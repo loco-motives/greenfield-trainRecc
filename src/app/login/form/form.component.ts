@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { LoginService } from './login.service';
 import { GetTrainsService } from '../../services/get-trains.service';
+import { Router } from '@angular/router';
+import { AuthService} from '../../services/auth.service';
 
 
 @Component({
@@ -14,7 +16,10 @@ export class FormComponent {
   loginPassword: string;
   public trains;
 
-  constructor(private loginService: LoginService, private getTrainsService: GetTrainsService) { }
+  constructor(private loginService: LoginService, 
+              private getTrainsService: GetTrainsService, 
+              private router: Router, 
+              private authService: AuthService) { }
 
   ngOnInit() {
   }
@@ -26,6 +31,10 @@ export class FormComponent {
       .subscribe(res => {
         this.loginUsername = '';
         this.loginPassword = '';
+        console.log('res from login is: ', res);
+        console.log('res.status from login is: ', res.status);
+        this.authService.isLoggedIn = true;
+        this.router.navigateByUrl('');
       }, err => {
         console.log('err', err)
       });
