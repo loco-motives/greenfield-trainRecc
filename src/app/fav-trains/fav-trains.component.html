@@ -1,9 +1,8 @@
-
 <md-list id="listwrap" >
   <span class='bg'> </span>
   <md-list *ngFor='let train of trains' class='train'>
       <img class='trainImg' [src]='train.trainImg'>
-      {{train.name}}
+      {{train.name}} 
       <div *ngFor='let song of train.songs' id='songlist'>
           <p><em>{{song.title}}</em> by {{song.artist}}</p>
           <audio controls='controls' [src]='song.songSourcePath'>

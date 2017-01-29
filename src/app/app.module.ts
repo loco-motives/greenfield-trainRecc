@@ -8,7 +8,6 @@ import 'hammerjs';
  
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
-import { SongFormComponent } from './song-form/song-form.component';
 
 import { ApiService } from './services/api.service';
 import { LoginComponent } from './login/login.component';
@@ -29,7 +28,6 @@ import { SearchpageComponent } from './searchpage/searchpage.component';
   declarations: [
     AppComponent,
     HomeComponent,
-    SongFormComponent,
     FormComponent,
     SignupComponent,
     LoginComponent,
@@ -47,7 +45,6 @@ import { SearchpageComponent } from './searchpage/searchpage.component';
         { path: 'form', component: FormComponent },
         { path: 'signup', component: SignupComponent}
       ]},
-      { path: 'songForm', component: SongFormComponent },
       { path: 'favtrains', component: FavTrainsComponent },
       { path: 'search', component: SearchpageComponent}
     ]),
