@@ -37,13 +37,7 @@ export class HomeComponent implements OnInit {
   }
 
   search () {
-    // this.testForGabe = !this.testForGabe
-    this.searchTagService.submitTagSearch(this.tagSearch)
-    .subscribe(res => {
-      console.log('found trains from tag', res.json());
-      this.trains = res.json();
-      this.searchResults = res.json();
-    })
+    this.apiService.submitTagSearch(this.tagSearch);
   }
 
   logout() {

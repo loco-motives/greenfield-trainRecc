@@ -1,6 +1,8 @@
-import { Component, OnInit, ViewEncapsulation, ChangeDetectionStrategy, Input } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, ChangeDetectionStrategy } from '@angular/core';
 import { GetTrainsService } from '../services/get-trains.service';
 import { HomeComponent} from '../home/home.component';
+import { ApiService } from '../services/api.service';
+import { SearchTagService } from '../services/search-tag.service';
 
 @Component({
   selector: 'app-fav-trains',
@@ -8,19 +10,13 @@ import { HomeComponent} from '../home/home.component';
   styleUrls: ['./fav-trains.component.css']
 })
 export class FavTrainsComponent implements OnInit {
-
-  @Input() homeComponent: HomeComponent;
   public trains;
 
-  constructor(private getTrainsService: GetTrainsService) { }
+  constructor(private getTrainsService: GetTrainsService, private searchTagService: SearchTagService, private apiService: ApiService) { }
   ngOnInit() {
+    this.trains = this.apiService.trains;
     setTimeout(() => {
-    this.getTrainsService.getTrains()
-      .subscribe(res => {
-        console.log('res.json is: ', res.json());
-        this.trains = res.json();
-        console.log('this.trains:',this.trains)
-      });
+      this.apiService.getTrains();
     }, 200)
   }
 }
