@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnChanges } from '@angular/core';
 import { HomeService } from './home.service';
 import { ApiService } from '../services/api.service';
 import { SearchTagService } from '../services/search-tag.service';
-import { ApplicationRef } from '@angular/core';
+import { AddSongToTrainService} from '../services/add-song-to-train.service'
 
 @Component({
   selector: 'app-home',
@@ -12,7 +12,7 @@ import { ApplicationRef } from '@angular/core';
 export class HomeComponent implements OnInit {
 
   constructor(private homeService: HomeService, private apiService: ApiService, private searchTagService: SearchTagService,
-              private applicationRef: ApplicationRef) { }
+              private addSongToTrainService: AddSongToTrainService) { }
   songToSearch: string;
   trainName: string;
   trainImgPath: string;
@@ -31,7 +31,9 @@ export class HomeComponent implements OnInit {
   };
   public trains = [];
   public testForGabe = true;
-  public listrendered=true;
+  public listrendered = true;
+  public recommendedTrack = '';
+  public addTrainView = this.addSongToTrainService.addTrainView;
 
   ngOnInit() {
   }
@@ -70,8 +72,6 @@ export class HomeComponent implements OnInit {
     console.log('opts', opts);
     this.apiService.userSubmitsTrain(opts);
     this.listrendered = !this.listrendered;
-    
-
     setTimeout( () => {
       this.listrendered = !this.listrendered;
     }, 5000)
@@ -79,5 +79,18 @@ export class HomeComponent implements OnInit {
 
   getFavTrains = () => {
      this.apiService.getTrains();
+  }
+
+  trackToRecommend = idx => {
+    this.recommendedTrack = this.songResults[idx];
+  }
+
+  recommendTrack = () => {
+    console.log('recommend track', this.recommendedTrack);
+    this.addSongToTrainService.addSong(this.recommendedTrack).subscribe(res => {
+      this.search();
+    }, err => {
+      console.log('err', err);
+    })
   }
 }

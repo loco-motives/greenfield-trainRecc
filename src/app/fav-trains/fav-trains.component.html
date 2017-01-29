@@ -4,7 +4,7 @@
       <p class='title'>{{train.trainName}} </p>
       <img class='trainImg' [src]='train.trainImg'>
       <div class='bootuns'>
-          <button> + </button>
+          <button (click)="addSongToTrain(idx)"> + </button>
           <button (click)="favTrain(idx)"> h </button>
       </div>
       <div *ngFor='let song of train.songs' id='songlist'>
