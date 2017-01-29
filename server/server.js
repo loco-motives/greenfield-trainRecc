@@ -3,13 +3,14 @@ var session = require('express-session');
 var cookieParser = require('cookie-parser');
 var flash = require('connect-flash');
 var setupPassport = require('./passportSetup');
+var path = require('path');
 require('../db');
 
 var bodyParser = require('body-parser');
 var router = require('./routes');
 
 var app = express();
-app.use(express.static(__dirname + '../dist'));
+app.use(express.static(path.join(__dirname, '../dist')));
 app.use(cookieParser());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
