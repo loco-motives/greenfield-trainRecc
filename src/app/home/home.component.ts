@@ -3,6 +3,7 @@ import { HomeService } from './home.service';
 import { ApiService } from '../services/api.service';
 import { SearchTagService } from '../services/search-tag.service';
 import { ApplicationRef } from '@angular/core';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-home',
@@ -11,8 +12,12 @@ import { ApplicationRef } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  constructor(private homeService: HomeService, private apiService: ApiService, private searchTagService: SearchTagService,
-              private applicationRef: ApplicationRef) { }
+  constructor(private homeService: HomeService, 
+              private apiService: ApiService, 
+              private searchTagService: SearchTagService,
+              private applicationRef: ApplicationRef,
+              private authService: AuthService
+              ) { }
   songToSearch: string;
   trainName: string;
   trainImgPath: string;
@@ -41,6 +46,7 @@ export class HomeComponent implements OnInit {
   }
 
   logout() {
+    this.authService.isLoggedIn = false;
     this.homeService.logout().subscribe(res => {
       console.log('logged out');
     });

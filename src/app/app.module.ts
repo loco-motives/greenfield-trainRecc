@@ -42,7 +42,7 @@ import { AuthService } from './services/auth.service';
     FormsModule,
     HttpModule,
     RouterModule.forRoot([
-      { path: '', component: HomeComponent },
+      { path: '', component: HomeComponent, canActivate: [AuthGuard] },
       { path: 'login', component: LoginComponent, children: [
         { path: 'form', component: FormComponent },
         { path: 'signup', component: SignupComponent}
