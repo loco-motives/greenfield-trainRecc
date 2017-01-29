@@ -4,10 +4,11 @@ const rp = require('request-promise');
 const fs = require('fs');
 const S3FS = require('s3fs');
 
-console.log('process.env', process.env);
 var s3fsImpl;
 if(process.env.AWSAccessKeyId && process.env.AWSSecretKey) {
   console.log('ENV VARS FOUND');
+  console.log('process.env.AWSAccessKeyId', process.env.AWSAccessKeyId);
+  console.log('process.env.AWSSecretKey', process.env.AWSSecretKey);
   s3fsImpl = new S3FS('mpthrees', {
     accessKeyId: process.env.AWSAccessKeyId,
     secretAccessKey: process.env.AWSSecretKey
