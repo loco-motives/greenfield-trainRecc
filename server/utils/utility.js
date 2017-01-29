@@ -9,6 +9,7 @@ if(process.env.AWSAccessKeyId && process.env.AWSSecretKey) {
   console.log('ENV VARS FOUND');
   console.log('process.env.AWSAccessKeyId', process.env.AWSAccessKeyId);
   console.log('process.env.AWSSecretKey', process.env.AWSSecretKey);
+  console.log('ANGULAR CLI IS NOW IN DEPENDENCIES');
   s3fsImpl = new S3FS('mpthrees', {
     accessKeyId: process.env.AWSAccessKeyId,
     secretAccessKey: process.env.AWSSecretKey
