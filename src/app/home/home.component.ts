@@ -76,4 +76,8 @@ export class HomeComponent implements OnInit {
       this.listrendered = !this.listrendered;
     }, 5000)
   }
+
+  getFavTrains = () => {
+     this.apiService.getTrains();
+  }
 }

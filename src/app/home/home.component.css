@@ -150,3 +150,15 @@ li {
     min-height: 710px;
     background-repeat: no-repeat;
 }
+
+.get-fav-btns {
+  border: groove;
+  border-color: darkgray;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  filter: blur(0.4px);
+  background-color: darkred;
+
+  position: absolute;
+  left: 50%;
+  top: 50px;
+}
