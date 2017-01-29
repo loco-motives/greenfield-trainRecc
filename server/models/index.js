@@ -40,7 +40,8 @@ var getFavoritedTrains = userId => {
           return {
             songs: train.songs,
             trainName: train.trainName,
-            trainImg: train.trainImg
+            trainImg: train.trainImg,
+            trainId: train.id
           };
         });
       })
