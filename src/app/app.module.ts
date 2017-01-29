@@ -23,6 +23,7 @@ import { AddSongToTrainService } from './services/add-song-to-train.service';
 import { SearchTagService} from './services/search-tag.service';
 import { SearchpageComponent } from './searchpage/searchpage.component';
 import { AuthGuard } from './services/auth-guard.service';
+import { AuthService } from './services/auth.service';
 
 
 @NgModule({
@@ -59,7 +60,8 @@ import { AuthGuard } from './services/auth-guard.service';
     HomeService, 
     AddSongToTrainService, 
     SearchTagService,
-    AuthGuard
+    AuthGuard,
+    AuthService
     ],
   bootstrap: [AppComponent]
 })
