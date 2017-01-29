@@ -28,6 +28,7 @@ export class ApiService {
 
   getTrains() {
     this._http.get('api/trains').subscribe(res => {
+      this.trains.splice(0, this.trains.length);
       res.json().forEach(train => {
         this.trains.push(train);
       })
