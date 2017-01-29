@@ -1,5 +1,6 @@
-import { Component, OnInit, ViewEncapsulation, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, ChangeDetectionStrategy, Input } from '@angular/core';
 import { GetTrainsService } from '../services/get-trains.service';
+import { HomeComponent} from '../home/home.component';
 
 @Component({
   selector: 'app-fav-trains',
@@ -7,6 +8,8 @@ import { GetTrainsService } from '../services/get-trains.service';
   styleUrls: ['./fav-trains.component.css']
 })
 export class FavTrainsComponent implements OnInit {
+
+  @Input() homeComponent: HomeComponent;
   public trains;
 
   constructor(private getTrainsService: GetTrainsService) { }
@@ -20,9 +23,4 @@ export class FavTrainsComponent implements OnInit {
       });
     }, 200)
   }
-
-  console = () => {
-    
-  }
-
 }

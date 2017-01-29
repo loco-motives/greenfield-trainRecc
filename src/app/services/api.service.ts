@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
+import { Observable } from 'rxjs/Observable';
 
 @Injectable()
 export class ApiService {
@@ -14,20 +15,7 @@ export class ApiService {
     return this._http.post('/api/getHypemSongPath', {track: track})
   }
 
-  userSubmitsTrain(trainInfo) {
-    console.log('trainInfo', trainInfo);
-    this._http.post('/api/addtrain', trainInfo).subscribe(res => {
-      console.log('res', res.json());
-    }, err => {
-      console.log('err', err);
-    })
-  }
-
-  testSession() {
-    this._http.get('/api/testsession').subscribe(res => {
-      console.log('res', res);
-    }, err => {
-      console.log('err', err);
-    });
+  userSubmitsTrain(trainInfo): Observable<any> {
+    return this._http.post('/api/addtrain', trainInfo).map(x => x.json());
   }
 }

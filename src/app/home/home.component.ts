@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HomeService } from './home.service';
 import { ApiService } from '../services/api.service';
 import { SearchTagService } from '../services/search-tag.service';
-
+import { ApplicationRef } from '@angular/core';
 
 @Component({
   selector: 'app-home',
@@ -11,12 +11,14 @@ import { SearchTagService } from '../services/search-tag.service';
 })
 export class HomeComponent implements OnInit {
 
-  constructor(private homeService: HomeService, private apiService: ApiService, private searchTagService: SearchTagService) { }
+  constructor(private homeService: HomeService, private apiService: ApiService, private searchTagService: SearchTagService,
+              private applicationRef: ApplicationRef) { }
   songToSearch: string;
   trainName: string;
   trainImgPath: string;
   trainTags: string;
   tagSearch: string;
+  message: "text";
 
 
   public songResults = [];
@@ -38,7 +40,8 @@ export class HomeComponent implements OnInit {
     // this.testForGabe = !this.testForGabe
     this.searchTagService.submitTagSearch(this.tagSearch)
     .subscribe(res => {
-      console.log(res.json())
+      console.log('found trains from tag', res.json());
+      this.trains = res.json();
       this.searchResults = res.json();
     })
   }
@@ -77,8 +80,6 @@ export class HomeComponent implements OnInit {
 
     setTimeout( () => {
       this.listrendered = !this.listrendered;
-    },5000)
-
+    }, 5000)
   }
-
 }
