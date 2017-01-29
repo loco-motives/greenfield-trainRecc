@@ -2,12 +2,15 @@
 <md-list id="listwrap" >
   <span class='bg'> </span>
   <md-list *ngFor='let train of trains' class='train'>
+      <p class='ttitle'>{{train.trainName}} </p>
       <img class='trainImg' [src]='train.trainImg'>
-      {{train.name}}
+      <div class='bootuns'>
+          <button> + </button>
+          <button> h </button>
+      </div>
       <div *ngFor='let song of train.songs' id='songlist'>
-          <p><em>{{song.title}}</em> by {{song.artist}}</p>
-          <audio controls='controls' [src]='song.songSourcePath'>
-          </audio>
+          <p class='sawng'><em>{{song.title}}</em> by {{song.artist}}</p>
+          <audio controls='controls' [src]='song.songSourcePath'></audio>
       </div>
   </md-list>
 </md-list>

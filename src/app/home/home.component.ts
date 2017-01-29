@@ -29,6 +29,7 @@ export class HomeComponent implements OnInit {
   };
   public trains = [];
   public testForGabe = true;
+  public listrendered=true;
 
   ngOnInit() {
   }
@@ -71,6 +72,13 @@ export class HomeComponent implements OnInit {
     }
     console.log('opts', opts);
     this.apiService.userSubmitsTrain(opts);
+    this.listrendered = !this.listrendered;
+    
+
+    setTimeout( () => {
+      this.listrendered = !this.listrendered;
+    },5000)
+
   }
 
 }

@@ -1,6 +1,9 @@
 .trainImg {
-    width: 7%;
-    height: 60%;
+    max-width: 7%;
+    max-height: 2.6em;
+    position: relative;
+    bottom: 1em;
+    border: 1px groove darkred;
 }
 
 .train li {
@@ -15,10 +18,35 @@
     border-radius: 8px;
 }
 
+.bootuns {
+    display: inline-block;
+     position: relative;
+    bottom: 1em;
+}
+
+.ttitle {
+    background-color: white;
+    display: inline-block;
+    position: relative;
+    bottom: 1em;
+    border-radius: 3px;
+    border: 1px groove darkred;
+}
+
+.sawng {
+    margin-bottom: 0px;
+    background-color: white;
+    width: 52.8%;
+    overflow: scroll;
+    white-space: nowrap;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+}
+
 .train {
     overflow: scroll;
     width: 100%;
-    max-height: 7%;
+    max-height: 13.6%;
     border-bottom: 1px groove lightslategray;
     white-space: nowrap;
     text-decoration: none;
@@ -27,6 +55,32 @@
 #songlist {
     display: inline-block;
     width: 100%;
+    position: relative;
+    top: .4em;
+}
+
+audio:hover, audio:focus, audio:active
+{
+-webkit-box-shadow: 15px 15px 20px rgba(0,0, 0, 0.4);
+-moz-box-shadow: 15px 15px 20px rgba(0,0, 0, 0.4);
+box-shadow: 15px 15px 20px rgba(0,0, 0, 0.4);
+-webkit-transform: scale(1.05);
+-moz-transform: scale(1.05);
+transform: scale(1.05);
+}
+
+audio
+{
+-webkit-transition:all 0.5s linear;
+-moz-transition:all 0.5s linear;
+-o-transition:all 0.5s linear;
+transition:all 0.5s linear;
+-moz-box-shadow: 2px 2px 4px 0px darkred;
+-webkit-box-shadow:  2px 2px 4px 0px darkred;
+box-shadow: 2px 2px 4px 0px darkred;
+-moz-border-radius:7px 7px 7px 7px ;
+-webkit-border-radius:7px 7px 7px 7px ;
+border-radius:7px 7px 7px 7px ;
 }
 
 md-list {
