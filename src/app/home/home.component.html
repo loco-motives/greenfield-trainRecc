@@ -38,7 +38,8 @@
         </md-list>
 </md-card>
 
-<app-fav-trains></app-fav-trains>
+<img class='loadinggif' src='http://khztkd.ir/Upload/Loading%20(2).gif' *ngIf='!listrendered'>
+<app-fav-trains *ngIf="listrendered"></app-fav-trains>
 
 <div id="wrapper">
         <!-- Sidebar -->

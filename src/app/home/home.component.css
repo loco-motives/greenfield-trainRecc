@@ -92,6 +92,14 @@ li {
   position: fixed;
 }
 
+.loadinggif {
+    width: 15%;
+    height: 25%;
+    display: inline-block;
+    margin-top: 19%;
+    margin-left:47%;
+}
+
 .search {
    margin-left: 18%;
    border: groove;
