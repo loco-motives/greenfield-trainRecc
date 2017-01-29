@@ -21,6 +21,19 @@ router.get('/media/pause.svg', (req, res) => {
     res.sendFile(path.resolve(__dirname + '/media/pause.svg'));
 });
 
+router.get('/css/audio.css', (req, res) => {
+    res.sendFile(path.resolve(__dirname + '/css/bootstrap.css'));
+});
+router.get('/css/bootstrap.css', (req, res) => {
+    res.sendFile(path.resolve(__dirname + '/css/bootstrap.css'));
+});
+router.get('/css/bootstrap.min.css', (req, res) => {
+    res.sendFile(path.resolve(__dirname + '/css/bootstrap.min.css'));
+});
+router.get('/css/simple-sidebar.css', (req, res) => {
+    res.sendFile(path.resolve(__dirname + '/css/simple-sidebar.css'));
+});
+
 router.get('/logout', (req, res) => {
     console.log('logged user out');
     req.logout();
