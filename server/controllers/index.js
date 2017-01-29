@@ -120,14 +120,12 @@ var favTrain = {
     console.log('Serving request for ', req.method, 'where url is ', req.url);
 
     var userId = req.session.passport ? req.session.passport.user : req.body.user;
-    userFavModel.create({
-      userId: userId,
-      trainId: req.body.trainId
-    }).then(createdUserFav => {
-      res.send('User: ' + userId + ' has favorited train: ' + req.body.trainId);
-    }).catch(err => {
-      res.status(500).send(err);
-    });
+    models.favTrain(req.body.trainName, req.body.trainImg, req.body.trainId, userId)
+      .then(success => {
+        res.send('User successfully favorited train ' + trainName);
+      }).catch(err => {
+        res.status(500).send(err);
+      });
   }
 };
 

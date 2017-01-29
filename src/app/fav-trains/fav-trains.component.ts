@@ -19,4 +19,8 @@ export class FavTrainsComponent implements OnInit {
       this.apiService.getTrains();
     }, 200)
   }
+
+  favTrain = idx => {
+    this.apiService.favTrain(this.trains[idx]);
+  }
 }

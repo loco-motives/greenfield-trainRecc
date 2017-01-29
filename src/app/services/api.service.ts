@@ -31,6 +31,7 @@ export class ApiService {
       res.json().forEach(train => {
         this.trains.push(train);
       })
+      console.log('this.trains', this.trains);
     }, err => {
       console.log('err', err);
     });
@@ -45,5 +46,17 @@ export class ApiService {
     }, err => {
       console.log('err', err);
     })
+  }
+
+  favTrain(train) {
+     return this._http.post('/api/favtrain', {
+      trainName: train.trainName,
+      trainImg: train.trainImg,
+      trainId: train.trainId
+    }).subscribe(res => {
+       console.log('res', res);
+    }, err => {
+      console.log('err', err);
+    });;
   }
 }
