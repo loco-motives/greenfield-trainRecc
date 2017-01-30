@@ -40,7 +40,7 @@ li {
   color: darkred;
 }
 
-.killme {
+.yuriyisgay {
   display: inline-block;
   width:20%;
   margin-left: 2%;
@@ -140,15 +140,26 @@ li {
   margin-bottom: 1px;
 }
 
+.x {
+  display: inline-block;
+  margin-left: 20%;
+  margin-top: 27.5%;
+  opacity: .8;
+  border-radius: 20px;
+  overflow: hidden;
+  border-width: 1px;
+  position: fixed;
+}
+
 .login2 {
-   margin-top: 3%;
+  margin-top: 1%;
    margin-left: 1px;
-   margin-bottom: 5px;
    border: groove;
    border-color: darkgray;
    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
    filter: blur(0.4px);
    background-color: darkred;
+   display: inline-block;
 }
 
 .login2:hover {

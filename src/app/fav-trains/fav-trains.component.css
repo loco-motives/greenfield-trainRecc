@@ -6,10 +6,6 @@
     border: 1px groove darkred;
 }
 
-.train li {
-    text-decoration: none;
-}
-
 .bootuns {
     display: inline-block;
      position: relative;
@@ -98,6 +94,7 @@ md-list {
     border-radius: 10px;
     position: fixed;
 }
+<<<<<<< HEAD
 
 .link {
     display: inline-block;

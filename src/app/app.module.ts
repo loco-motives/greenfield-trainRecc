@@ -24,6 +24,7 @@ import { SearchTagService} from './services/search-tag.service';
 import { SearchpageComponent } from './searchpage/searchpage.component';
 import { AuthGuard } from './services/auth-guard.service';
 import { AuthService } from './services/auth.service';
+import { SearchTrainsComponent } from './search-trains/search-trains.component';
 
 
 @NgModule({
@@ -35,7 +36,8 @@ import { AuthService } from './services/auth.service';
     LoginComponent,
     SearchComponent,
     FavTrainsComponent,
-    SearchpageComponent
+    SearchpageComponent,
+    SearchTrainsComponent
   ],
   imports: [
     BrowserModule,
