@@ -95,6 +95,11 @@ export class HomeComponent implements OnInit {
     this.recommendedTrack = this.songResults[idx];
   }
 
+  returnToTrains() {
+    this.addSongToTrainService.returnTrainView();
+    this.addTrainView = this.addSongToTrainService.addTrainView;
+  }
+
   recommendTrack = () => {
     console.log('recommend track', this.recommendedTrack);
     this.addSongToTrainService.addSong(this.recommendedTrack).subscribe(res => {
