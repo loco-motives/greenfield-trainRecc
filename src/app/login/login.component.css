@@ -2,7 +2,7 @@
     background-image: url('https://media.giphy.com/media/tKX6FNU9UGwF2/giphy.gif');
     background-size: cover;
     min-width: 400px;
-    min-height: 700px;
+    min-height: 762px;
     background-repeat: no-repeat;
     text-align: center;
 
@@ -18,6 +18,11 @@
 
 }
 
+.login1:hover {
+  background-color: red;
+  transform: scale(1.1);
+}
+
 .login {
    margin-top: 3%;
    margin-left: 5px;
@@ -26,6 +31,9 @@
    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
    filter: blur(0.7px);
    background-color: darkred;
+}
 
-
+.login:hover {
+  background-color: red;
+  transform: scale(1.1);
 }

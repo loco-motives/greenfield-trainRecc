@@ -35,3 +35,8 @@
    filter: blur(0.4px);
    background-color: darkred;
 }
+
+.login:hover {
+  background-color: red;
+  transform: scale(1.1);
+}

@@ -1,15 +1,18 @@
 <md-list id="listwrap" >
   <span class='bg'> </span>
   <md-list *ngFor='let train of trains; let idx = index; trackBy: trackByFn' class='train'>
-      <p class='title'>{{train.trainName}} </p>
+      <span class='title'><h5>{{train.trainName}}</h5></span>
       <img class='trainImg' [src]='train.trainImg'>
       <div class='bootuns'>
-          <button (click)="addSongToTrain(idx)"> + </button>
-          <button (click)="favTrain(idx)"> h </button>
+          <button (click)="addSongToTrain(idx)" md-raised-button color='warn' class="add-song-btn"> + </button>
+          <img (click)="favTrain(idx)" src="http://pngimg.com/upload/heart_PNG691.png" class="fav-heart">
       </div>
-      <div *ngFor='let song of train.songs' id='songlist'>
-          <p class='sawng'><em>{{song.title}}</em> by {{song.artist}}</p>
-          <audio controls='controls' [src]='song.songSourcePath'></audio>
+      <div *ngFor='let song of train.songs' id="songlist">
+          <div>
+            <p class='sawng'><em>{{song.title}}</em> by {{song.artist}}</p>
+            <audio controls='controls' [src]='song.songSourcePath'></audio>
+          </div>
       </div>
+          
   </md-list>
 </md-list>
