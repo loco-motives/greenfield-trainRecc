@@ -54,6 +54,7 @@ export class HomeComponent implements OnInit {
 
   logout() {
     this.authService.isLoggedIn = false;
+    this.addSongToTrainService.returnTrainView();
     this.homeService.logout().subscribe(res => {
       console.log('logged out');
     });
