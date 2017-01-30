@@ -87,6 +87,11 @@ export class HomeComponent implements OnInit {
     this.trainName = '';
     this.trainImgPath = '';
     this.trainTags = '';
+    this.selectedTrack = {
+      song: 'Select your song below',
+      ph: ''
+    };
+    this.songResults = [];
     this.apiService.userSubmitsTrain(opts);
     this.displayLoadingGif();
   }
@@ -104,6 +109,7 @@ export class HomeComponent implements OnInit {
 
   trackToRecommend = idx => {
     this.recommendedTrack = this.songResults[idx];
+    console.log('reccd track:', this.recommendedTrack);
   }
 
   returnToTrains() {
@@ -114,10 +120,12 @@ export class HomeComponent implements OnInit {
   recommendTrack = () => {
     this.addSongToTrainService.addSong(this.recommendedTrack).subscribe(res => {
       this.getFavTrains();
+      console.log('reccd track before wipe:', this.recommendedTrack);
       this.recommendedTrack = '';
+      console.log('reccd track after wipe:', this.recommendedTrack);
       this.songResults = [];
       this.searchResults = [];
-      // this.displayLoadingGif()
+      this.displayLoadingGif()
     }, err => {
       console.log('err', err);
     })
