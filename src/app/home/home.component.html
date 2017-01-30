@@ -43,9 +43,10 @@
         <md-card class='searches'>
             <h4>Track to recommend: {{this.recommendedTrack.song}}</h4>
             <input placeholder="Search for song" [(ngModel)]="songToSearch">
-                <button md-raised-button color='warn' class='login2' (click)="returnToTrains()">Add a Train</button>
+                <p>
+                <button md-raised-button color='warn' class='login2' (click)="recommendTrack()" *ngIf="recommendedTrack">Add Song</button>
                 <button md-raised-button color='warn' class='login2' (click)="searchForSong()">Search</button>
-                <button md-raised-button color='warn' class='login2' (click)="recommendTrack()" *ngIf="recommendedTrack">Recommend</button>
+                </p>
                 <md-list id="slist">
                 <div class="song" (click)="trackToRecommend(i)" *ngFor="let songResult of songResults; let i = index; trackBy: trackByFn">
                     <p>{{songResult.artist}}</p>
@@ -53,6 +54,10 @@
                 </div>
                 </md-list>
         </md-card>
+    </div>
+
+    <div *ngIf="!atv" class='x'>
+        <button (click)="returnToTrains()">x</button>
     </div>
 </div>
 <img class='loadinggif' src='http://khztkd.ir/Upload/Loading%20(2).gif' *ngIf='!listrendered'>

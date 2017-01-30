@@ -1,10 +1,10 @@
 <md-list id="listwrap" >
   <span class='bg'> </span>
   <md-list *ngFor='let train of trains; let idx = index; trackBy: trackByFn' class='train'>
+    <img class='trainImg' [src]='train.trainImg'>
       <span class='title'><h5>{{train.trainName}}</h5></span>
-      <img class='trainImg' [src]='train.trainImg'>
       <div class='bootuns'>
-          <button (click)="addSongToTrain(idx)" md-raised-button color='warn' class="add-song-btn"> + </button>
+          <button (click)="addSongToTrain(idx)" md-raised-button color='warn' class="add-song-btn"> Add Song </button>
           <img (click)="favTrain(idx)" src="http://pngimg.com/upload/heart_PNG691.png" class="fav-heart">
       </div>
       <div *ngFor='let song of train.songs' id="songlist">
