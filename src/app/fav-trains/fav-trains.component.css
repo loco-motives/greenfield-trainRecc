@@ -108,8 +108,21 @@ md-list {
     width: 8%;
 }
 
-.fav-heart {
-    max-height: 40px;
-    max-width: 40px;
-    cursor: pointer;
+.fav-heart{
+  max-height: 40px;
+  max-width: 40px;
+  cursor: pointer;
+}
+
+.add-song-btn {
+  margin-top: 3%;
+  margin-left: 1px;
+  margin-bottom: 5px;
+  border: groove;
+  border-color: darkgray;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  filter: blur(0.4px);
+  background-color: darkred;
+
+  margin-right: 3px;
 }
