@@ -38,13 +38,13 @@
                 </md-list>
         </md-card>
     </div>
-
+ 
     <div *ngIf="!atv">
         <md-card class='searches' id='addSongView'>
             <button class="return-to-trains-btn btn btn-danger" (click)="returnToTrains()">x</button>
             <h4>Track to recommend</h4>
             <h4>-----------------------</h4>
-            <h4>{{this.recommendedTrack.song}}</h4>
+            <h4>{{recommendedTrack.song}}</h4>
             <input placeholder="Search for song" [(ngModel)]="songToSearch">
                 <p>
                 <button md-raised-button color='warn' class='login2' (click)="recommendTrack()" *ngIf="recommendedTrack">Add Song</button>
