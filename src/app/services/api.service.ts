@@ -58,7 +58,6 @@ export class ApiService {
        console.log('res', res);
     }, err => {
       console.log('err', err);
-    });;
-
+    });
   }
 }
