@@ -1,6 +1,6 @@
 .trainImg {
-    height: 40px;
-    width: 40px;
+    height: 67px;
+    width: 67px;
     position: relative;
     bottom: 1em;
     border: 1px groove darkred;
@@ -16,11 +16,12 @@
     background-color: white;
     display: inline-block;
     position: relative;
-    bottom: 1em;
+    bottom: 2em;
     border-radius: 3px;
     border: 1px groove darkred;
     width: 100px;
     text-align: center;
+    height: 67px;
 }
 
 .sawng {
@@ -33,9 +34,10 @@
 }
 
 .train {
-    overflow: scroll;
+    overflow-x: scroll;
+    overflow-y: hidden;
     width: 100%;
-    max-height: 13.6%;
+    max-height: 11.6%;
     border-bottom: 1px groove lightslategray;
     white-space: nowrap;
     text-decoration: none;
@@ -103,8 +105,8 @@ md-list {
 }
 
 .fav-heart{
-  max-height: 40px;
-  max-width: 40px;
+  height: 60px;
+  max-width: 60px;
   cursor: pointer;
 }
 
@@ -122,9 +124,15 @@ md-list {
   filter: blur(0.4px);
   background-color: darkred;
   margin-right: 3px;
+  line-height: 54px;
 }
 
 .add-song-btn:hover {
   background-color: red;
   transform: scale(1.1);
+}
+
+.audio-container {
+  bottom: 2em;
+  margin-top: -2px;
 }
