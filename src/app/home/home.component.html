@@ -41,7 +41,10 @@
 
     <div *ngIf="!atv">
         <md-card class='searches' id='addSongView'>
-            <h4>Track to recommend: {{this.recommendedTrack.song}}</h4>
+            <button class="return-to-trains-btn btn btn-danger" (click)="returnToTrains()">x</button>
+            <h4>Track to recommend</h4>
+            <h4>-----------------------</h4>
+            <h4>{{this.recommendedTrack.song}}</h4>
             <input placeholder="Search for song" [(ngModel)]="songToSearch">
                 <p>
                 <button md-raised-button color='warn' class='login2' (click)="recommendTrack()" *ngIf="recommendedTrack">Add Song</button>
@@ -54,10 +57,6 @@
                 </div>
                 </md-list>
         </md-card>
-    </div>
-
-    <div *ngIf="!atv" class='x'>
-        <button (click)="returnToTrains()">x</button>
     </div>
 </div>
 <img class='loadinggif' src='http://khztkd.ir/Upload/Loading%20(2).gif' *ngIf='!listrendered'>

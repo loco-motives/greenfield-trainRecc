@@ -95,6 +95,7 @@ li {
   border-color: darkred;
   border-width: 1px;
   position: fixed;
+  padding: 1.5em;
 }
 
 .loadinggif {
@@ -202,4 +203,12 @@ li {
 .md-ripple-background:hover {
   background-color: red;
   transform: scale(1.1);
+}
+
+.return-to-trains-btn {
+  float: right;
+}
+
+#addSongView {
+  margin-top: 1%;
 }
