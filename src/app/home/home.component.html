@@ -40,7 +40,7 @@
     </div>
 
     <div *ngIf="!atv">
-        <md-card class='searches'>
+        <md-card class='searches' id='addSongView'>
             <h4>Track to recommend: {{this.recommendedTrack.song}}</h4>
             <input placeholder="Search for song" [(ngModel)]="songToSearch">
                 <button md-raised-button color='warn' class='login2' (click)="returnToTrains()">Add a Train</button>
