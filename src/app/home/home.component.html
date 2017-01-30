@@ -61,7 +61,7 @@
 </div>
 <img class='loadinggif' src='http://khztkd.ir/Upload/Loading%20(2).gif' *ngIf='!listrendered'>
 
-<button md-raised-button color='warn' class="get-fav-btns" (click)='getFavTrains()'> Favorited Songs </button>
+<button md-raised-button color='warn' class="get-fav-btns" (click)='getFavTrains()' (click)="returnToTrains()"> Favorited Songs </button>
 
 <app-fav-trains *ngIf="listrendered"></app-fav-trains>
 
