@@ -1,6 +1,6 @@
 .trainImg {
-    max-width: 7%;
-    max-height: 2.6em;
+    height: 40px;
+    width: 40px;
     position: relative;
     bottom: 1em;
     border: 1px groove darkred;
@@ -10,37 +10,32 @@
     text-decoration: none;
 }
 
-.sm2-inline-gradient {
-    position: relative;
-}
-
-.sm2-bar-ui > .bd {
-    border-radius: 8px;
-}
-
 .bootuns {
     display: inline-block;
      position: relative;
     bottom: 1em;
 }
 
-.ttitle {
+.title {
     background-color: white;
     display: inline-block;
     position: relative;
     bottom: 1em;
     border-radius: 3px;
     border: 1px groove darkred;
+    width: 100px;
+    text-align: center;
 }
 
 .sawng {
     margin-bottom: 0px;
     background-color: white;
-    width: 52.8%;
+    width: 300px;
     overflow: scroll;
     white-space: nowrap;
     border-top-left-radius: 8px;
     border-top-right-radius: 8px;
+    text-align: center;
 }
 
 .train {
@@ -54,7 +49,7 @@
 
 #songlist {
     display: inline-block;
-    width: 100%;
+    width: 300px;
     position: relative;
     top: .4em;
 }
@@ -108,20 +103,31 @@ md-list {
     position: fixed;
 }
 
-.sm2-bar-ui {
- font-size: 12px;
-}
-.sm2-bar-ui .sm2-main-controls,
-.sm2-bar-ui .sm2-playlist-drawer {
- background-color: #b54645;
-}
-
 .link {
     display: inline-block;
     height: 60%;
     width: 8%;
 }
 
-.sm2-bar-ui .sm2-inline-texture {
- background: url(paper.png);
+.fav-heart{
+  max-height: 40px;
+  max-width: 40px;
+  cursor: pointer;
+}
+
+.add-song-btn {
+  margin-top: 3%;
+  margin-left: 1px;
+  margin-bottom: 5px;
+  border: groove;
+  border-color: darkgray;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  filter: blur(0.4px);
+  background-color: darkred;
+  margin-right: 3px;
+}
+
+.add-song-btn:hover {
+  background-color: red;
+  transform: scale(1.1);
 }
