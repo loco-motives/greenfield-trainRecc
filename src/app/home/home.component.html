@@ -43,6 +43,7 @@
         <md-card class='searches'>
             <h4>Track to recommend: {{this.recommendedTrack.song}}</h4>
             <input placeholder="Search for song" [(ngModel)]="songToSearch">
+                <button md-raised-button color='warn' class='login2' (click)="returnToTrains()">Add a Train</button>
                 <button md-raised-button color='warn' class='login2' (click)="searchForSong()">Search</button>
                 <button md-raised-button color='warn' class='login2' (click)="recommendTrack()" *ngIf="recommendedTrack">Recommend</button>
                 <md-list id="slist">

@@ -9,12 +9,4 @@ export class AuthService {
 
   redirectUrl: string;
 
-  login() {
-    this.isLoggedIn = true;
-  }
-
-  logout(){
-    this.isLoggedIn = false;
-  }
-
 }
