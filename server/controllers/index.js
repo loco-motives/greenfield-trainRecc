@@ -77,7 +77,7 @@ var song = {
       }).then(() => {
         res.send('added song to train: ' + req.body.trainId);
       }).catch(err => {
-        res.send('err', err);
+        res.send(err);
       });
   }
 };

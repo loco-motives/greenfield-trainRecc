@@ -33,8 +33,6 @@
     width: 300px;
     overflow: scroll;
     white-space: nowrap;
-    border-top-left-radius: 8px;
-    border-top-right-radius: 8px;
     text-align: center;
 }
 
