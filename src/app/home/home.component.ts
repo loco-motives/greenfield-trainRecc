@@ -49,6 +49,7 @@ export class HomeComponent implements OnInit {
 
   search () {
     this.apiService.submitTagSearch(this.tagSearch);
+    this.tagSearch = '';
   }
 
   logout() {
@@ -80,6 +81,10 @@ export class HomeComponent implements OnInit {
       tags: this.trainTags
     }
     console.log('opts', opts);
+
+    this.trainName = '';
+    this.trainImgPath = '';
+    this.trainTags = '';
     this.apiService.userSubmitsTrain(opts);
     this.displayLoadingGif();
   }
