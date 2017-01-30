@@ -113,7 +113,10 @@ export class HomeComponent implements OnInit {
 
   recommendTrack = () => {
     this.addSongToTrainService.addSong(this.recommendedTrack).subscribe(res => {
-      this.search();
+      this.getFavTrains();
+      this.recommendedTrack = '';
+      this.songResults = [];
+      this.searchResults = [];
       // this.displayLoadingGif()
     }, err => {
       console.log('err', err);
