@@ -24,6 +24,12 @@
     height: 67px;
 }
 
+.hrtbutton { 
+    background: #f0f0f0 url('http://www.clker.com/cliparts/u/c/7/0/b/L/white-heart-md.png');
+    background-position: 8px 8px;
+    background-repeat: no-repeat;
+}
+
 .sawng {
     margin-bottom: 0px;
     background-color: white;
@@ -31,6 +37,8 @@
     overflow: scroll;
     white-space: nowrap;
     text-align: center;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
 }
 
 .train {
@@ -96,35 +104,37 @@ md-list {
     border-radius: 10px;
     position: fixed;
 }
-<<<<<<< HEAD
 
-.link {
-    display: inline-block;
-    height: 60%;
-    width: 8%;
+.h5a {
+  position: relative;
+  top: 10px;
 }
 
 .fav-heart{
-  height: 60px;
-  max-width: 60px;
+  height: 56px;
+  width: 58px;
+  position: relative;
+  bottom: 4px;
+  border: groove;
+  border-color: darkgrey;
   cursor: pointer;
+  background-color: darkred;
 }
 
 .fav-heart:hover {
-    transform: scale(1.5);
+    transform: scale(0.9);
+    background-color: green;
 }
 
 .add-song-btn {
-  margin-top: 3%;
-  margin-left: 1px;
-  margin-bottom: 5px;
   border: groove;
   border-color: darkgray;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   filter: blur(0.4px);
   background-color: darkred;
-  margin-right: 3px;
   line-height: 54px;
+  position: relative;
+  bottom: 3px;
 }
 
 .add-song-btn:hover {

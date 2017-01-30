@@ -2,11 +2,11 @@
   <span class='bg'> </span>
   <md-list *ngFor='let train of trains; let idx = index; trackBy: trackByFn' class='train'>
       <img class='trainImg' [src]='train.trainImg'><!--
-      --><span class='title'><h5>{{train.trainName}}</h5></span><!--
+      --><span class='title'><h5 class='h5a'>{{train.trainName}}</h5></span><!--
       --><div class='bootuns'><!--
           --><button (click)="addSongToTrain(idx)" md-raised-button color='warn' class="add-song-btn"> Add Song </button><!--
-          --><img (click)="favTrain(idx)" src="https://wallpaperscraft.com/image/heart_red_bright_light_7272_2560x1600.jpg" class="fav-heart">
-      </div><!--
+          --><img (click)="favTrain(dx)" src="http://www.clker.com/cliparts/u/c/7/0/b/L/white-heart-md.png" class="fav-heart"><!--
+      --></div><!--
       --><div *ngFor='let song of train.songs' id="songlist">
           <div class="audio-container">
             <p class='sawng'><em>{{song.title}}</em> by {{song.artist}}</p>
