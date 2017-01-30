@@ -42,6 +42,7 @@ export class HomeComponent implements OnInit {
   public testForGabe = true;
   public listrendered = true;
   public recommendedTrack = '';
+  public atv = true;
   public addTrainView = this.addSongToTrainService.addTrainView;
 
   ngOnInit() {
