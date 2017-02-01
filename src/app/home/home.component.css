@@ -40,7 +40,7 @@ li {
   color: darkred;
 }
 
-.killme {
+.yuriyisgay {
   display: inline-block;
   width:20%;
   margin-left: 2%;
@@ -71,6 +71,11 @@ li {
    background-color: darkred;
 }
 
+.login:hover {
+  background-color: red;
+  transform: scale(1.1);
+}
+
 #slist {
     overflow: scroll;
     width: 100%;
@@ -90,6 +95,7 @@ li {
   border-color: darkred;
   border-width: 1px;
   position: fixed;
+  padding: 1.5em;
 }
 
 .loadinggif {
@@ -109,8 +115,13 @@ li {
    background-color: darkred;
 }
 
+.search:hover {
+  background-color: red;
+  transform: scale(1.1);
+}
+
 .logout {
-    margin-top: 175%;
+    margin-top: 200%;
    margin-left: 14%;
    border: groove;
    border-color: darkgray;
@@ -119,21 +130,42 @@ li {
    background-color: darkred;
 }
 
+.logout:hover {
+  background-color: red;
+  transform: scale(1.1);
+}
+
 .song {
   cursor: pointer;
   border-bottom: 1px ridge grey;
   margin-bottom: 1px;
 }
 
+.x {
+  display: inline-block;
+  margin-left: 20%;
+  margin-top: 27.5%;
+  opacity: .8;
+  border-radius: 20px;
+  overflow: hidden;
+  border-width: 1px;
+  position: fixed;
+}
+
 .login2 {
-   margin-top: 3%;
+  margin-top: 1%;
    margin-left: 1px;
-   margin-bottom: 5px;
    border: groove;
    border-color: darkgray;
    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
    filter: blur(0.4px);
    background-color: darkred;
+   display: inline-block;
+}
+
+.login2:hover {
+  background-color: red;
+  transform: scale(1.1);
 }
 
 .tagsearch {
@@ -147,7 +179,7 @@ li {
   background-image: url('../../assets/giphy-1.gif');
     background-size: cover;
     min-width: 400px;
-    min-height: 710px;
+    min-height: 762px;
     background-repeat: no-repeat;
 }
 
@@ -161,4 +193,22 @@ li {
   position: absolute;
   left: 50%;
   top: 50px;
+}
+
+.get-fav-btns:hover {
+  background-color: red;
+  transform: scale(1.1);
+}
+
+.md-ripple-background:hover {
+  background-color: red;
+  transform: scale(1.1);
+}
+
+.return-to-trains-btn {
+  float: right;
+}
+
+#addSongView {
+  margin-top: 1%;
 }

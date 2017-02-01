@@ -22,4 +22,9 @@ export class AddSongToTrainService {
     this.addTrainView.shift();
     this.addTrainView.push(false);
   }
+
+  returnTrainView() {
+    this.addTrainView.shift();
+    this.addTrainView.push(true);
+  }
 }

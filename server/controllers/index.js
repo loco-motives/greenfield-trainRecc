@@ -73,11 +73,9 @@ var song = {
           });
         });
       }).then(() => {
-        return models.favTrain(req.body.name, req.body.imgurl, req.body.trainId, req.session.passport.user);
-      }).then(() => {
         res.send('added song to train: ' + req.body.trainId);
       }).catch(err => {
-        res.send('err', err);
+        res.send(err);
       });
   }
 };

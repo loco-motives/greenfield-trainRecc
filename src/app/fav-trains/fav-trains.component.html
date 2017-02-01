@@ -1,15 +1,18 @@
-<md-list id="listwrap" >
+<md-list id="listwrap">
   <span class='bg'> </span>
   <md-list *ngFor='let train of trains; let idx = index; trackBy: trackByFn' class='train'>
-      <p class='title'>{{train.trainName}} </p>
-      <img class='trainImg' [src]='train.trainImg'>
-      <div class='bootuns'>
-          <button (click)="addSongToTrain(idx)"> + </button>
-          <button (click)="favTrain(idx)"> h </button>
+      <img class='trainImg' [src]='train.trainImg'><!--
+      --><span class='title'><h5 class='h5a'>{{train.trainName}}</h5></span><!--
+      --><div class='bootuns'><!--
+          --><button (click)="addSongToTrain(idx)" md-raised-button color='warn' class="add-song-btn"> Add Song </button><!--
+          --><img (click)="favTrain(dx)" src="http://www.clker.com/cliparts/u/c/7/0/b/L/white-heart-md.png" class="fav-heart"><!--
+      --></div><!--
+      --><div *ngFor='let song of train.songs' id="songlist">
+          <div class="audio-container">
+            <p class='sawng'><em>{{song.title}}</em> by {{song.artist}}</p>
+            <audio controls='controls' [src]='song.songSourcePath'></audio>
+          </div>
       </div>
-      <div *ngFor='let song of train.songs' id='songlist'>
-          <p class='sawng'><em>{{song.title}}</em> by {{song.artist}}</p>
-          <audio controls='controls' [src]='song.songSourcePath'></audio>
-      </div>
+          
   </md-list>
 </md-list>

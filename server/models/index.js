@@ -41,7 +41,7 @@ var getFavoritedTrains = userId => {
             songs: train.songs,
             trainName: train.trainName,
             trainImg: train.trainImg,
-            trainId: train.id
+            trainId: train.trainId
           };
         });
       })
@@ -93,7 +93,6 @@ var addTags = (tags, trainId) => {
 };
 
 var getTrainsByTag = tagName => {
-  console.log('tagName', tagName);
   return tagModel.findAll({
     where: {
       text: tagName
@@ -106,7 +105,6 @@ var getTrainsByTag = tagName => {
         return sequelize.query('SELECT * FROM TrainTag WHERE tagId=' + tagId, {
           type: sequelize.QueryTypes.SELECT
         }).then(trainTag => {
-          console.log('trainTag', trainTag);
           return trainModel.findOne({
             where: {
               id: trainTag[0].trainId

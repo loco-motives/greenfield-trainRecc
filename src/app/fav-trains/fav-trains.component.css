@@ -1,21 +1,9 @@
 .trainImg {
-    max-width: 7%;
-    max-height: 2.6em;
+    height: 67px;
+    width: 67px;
     position: relative;
     bottom: 1em;
     border: 1px groove darkred;
-}
-
-.train li {
-    text-decoration: none;
-}
-
-.sm2-inline-gradient {
-    position: relative;
-}
-
-.sm2-bar-ui > .bd {
-    border-radius: 8px;
 }
 
 .bootuns {
@@ -24,29 +12,40 @@
     bottom: 1em;
 }
 
-.ttitle {
+.title {
     background-color: white;
     display: inline-block;
     position: relative;
-    bottom: 1em;
+    bottom: 2em;
     border-radius: 3px;
     border: 1px groove darkred;
+    width: 100px;
+    text-align: center;
+    height: 67px;
+}
+
+.hrtbutton { 
+    background: #f0f0f0 url('http://www.clker.com/cliparts/u/c/7/0/b/L/white-heart-md.png');
+    background-position: 8px 8px;
+    background-repeat: no-repeat;
 }
 
 .sawng {
     margin-bottom: 0px;
     background-color: white;
-    width: 52.8%;
+    width: 300px;
     overflow: scroll;
     white-space: nowrap;
+    text-align: center;
     border-top-left-radius: 8px;
     border-top-right-radius: 8px;
 }
 
 .train {
-    overflow: scroll;
+    overflow-x: scroll;
+    overflow-y: hidden;
     width: 100%;
-    max-height: 13.6%;
+    max-height: 11.6%;
     border-bottom: 1px groove lightslategray;
     white-space: nowrap;
     text-decoration: none;
@@ -54,33 +53,31 @@
 
 #songlist {
     display: inline-block;
-    width: 100%;
+    width: 300px;
     position: relative;
     top: .4em;
 }
 
-audio:hover, audio:focus, audio:active
-{
--webkit-box-shadow: 15px 15px 20px rgba(0,0, 0, 0.4);
--moz-box-shadow: 15px 15px 20px rgba(0,0, 0, 0.4);
-box-shadow: 15px 15px 20px rgba(0,0, 0, 0.4);
--webkit-transform: scale(1.05);
--moz-transform: scale(1.05);
-transform: scale(1.05);
+audio:hover, audio:focus, audio:active {
+    -webkit-box-shadow: 15px 15px 20px rgba(0,0, 0, 0.4);
+    -moz-box-shadow: 15px 15px 20px rgba(0,0, 0, 0.4);
+    box-shadow: 15px 15px 20px rgba(0,0, 0, 0.4);
+    -webkit-transform: scale(1.05);
+    -moz-transform: scale(1.05);
+    transform: scale(1.05);
 }
 
-audio
-{
--webkit-transition:all 0.5s linear;
--moz-transition:all 0.5s linear;
--o-transition:all 0.5s linear;
-transition:all 0.5s linear;
--moz-box-shadow: 2px 2px 4px 0px darkred;
--webkit-box-shadow:  2px 2px 4px 0px darkred;
-box-shadow: 2px 2px 4px 0px darkred;
--moz-border-radius:7px 7px 7px 7px ;
--webkit-border-radius:7px 7px 7px 7px ;
-border-radius:7px 7px 7px 7px ;
+audio {
+    -webkit-transition:all 0.5s linear;
+    -moz-transition:all 0.5s linear;
+    -o-transition:all 0.5s linear;
+    transition:all 0.5s linear;
+    -moz-box-shadow: 2px 2px 4px 0px darkred;
+    -webkit-box-shadow:  2px 2px 4px 0px darkred;
+    box-shadow: 2px 2px 4px 0px darkred;
+    -moz-border-radius:7px 7px 7px 7px ;
+    -webkit-border-radius:7px 7px 7px 7px ;
+    border-radius:7px 7px 7px 7px ;
 }
 
 md-list {
@@ -108,20 +105,44 @@ md-list {
     position: fixed;
 }
 
-.sm2-bar-ui {
- font-size: 12px;
-}
-.sm2-bar-ui .sm2-main-controls,
-.sm2-bar-ui .sm2-playlist-drawer {
- background-color: #b54645;
+.h5a {
+  position: relative;
+  top: 10px;
 }
 
-.link {
-    display: inline-block;
-    height: 60%;
-    width: 8%;
+.fav-heart{
+  height: 56px;
+  width: 58px;
+  position: relative;
+  bottom: 4px;
+  border: groove;
+  border-color: darkgrey;
+  cursor: pointer;
+  background-color: darkred;
 }
 
-.sm2-bar-ui .sm2-inline-texture {
- background: url(paper.png);
+.fav-heart:hover {
+    transform: scale(0.9);
+    background-color: green;
+}
+
+.add-song-btn {
+  border: groove;
+  border-color: darkgray;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  filter: blur(0.4px);
+  background-color: darkred;
+  line-height: 54px;
+  position: relative;
+  bottom: 3px;
+}
+
+.add-song-btn:hover {
+  background-color: red;
+  transform: scale(1.1);
+}
+
+.audio-container {
+  bottom: 2em;
+  margin-top: -2px;
 }

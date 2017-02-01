@@ -3,6 +3,8 @@ import { HomeService } from './home.service';
 import { ApiService } from '../services/api.service';
 import { SearchTagService } from '../services/search-tag.service';
 import { AddSongToTrainService} from '../services/add-song-to-train.service'
+import { ApplicationRef } from '@angular/core';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-home',
@@ -11,8 +13,15 @@ import { AddSongToTrainService} from '../services/add-song-to-train.service'
 })
 export class HomeComponent implements OnInit {
 
-  constructor(private homeService: HomeService, private apiService: ApiService, private searchTagService: SearchTagService,
-              private addSongToTrainService: AddSongToTrainService) { }
+
+  constructor(private homeService: HomeService, 
+              private apiService: ApiService, 
+              private searchTagService: SearchTagService,
+              private addSongToTrainService: AddSongToTrainService,
+              private applicationRef: ApplicationRef,
+              private authService: AuthService
+              ) { }
+
   songToSearch: string;
   trainName: string;
   trainImgPath: string;
@@ -33,6 +42,7 @@ export class HomeComponent implements OnInit {
   public testForGabe = true;
   public listrendered = true;
   public recommendedTrack = '';
+  public atv = true;
   public addTrainView = this.addSongToTrainService.addTrainView;
 
   ngOnInit() {
@@ -40,9 +50,12 @@ export class HomeComponent implements OnInit {
 
   search () {
     this.apiService.submitTagSearch(this.tagSearch);
+    this.tagSearch = '';
   }
 
   logout() {
+    this.authService.isLoggedIn = false;
+    this.addSongToTrainService.returnTrainView();
     this.homeService.logout().subscribe(res => {
       console.log('logged out');
     });
@@ -70,7 +83,20 @@ export class HomeComponent implements OnInit {
       tags: this.trainTags
     }
     console.log('opts', opts);
+
+    this.trainName = '';
+    this.trainImgPath = '';
+    this.trainTags = '';
+    this.selectedTrack = {
+      song: 'Select your song below',
+      ph: ''
+    };
+    this.songResults = [];
     this.apiService.userSubmitsTrain(opts);
+    this.displayLoadingGif();
+  }
+
+  displayLoadingGif() {
     this.listrendered = !this.listrendered;
     setTimeout( () => {
       this.listrendered = !this.listrendered;
@@ -83,12 +109,23 @@ export class HomeComponent implements OnInit {
 
   trackToRecommend = idx => {
     this.recommendedTrack = this.songResults[idx];
+    console.log('reccd track:', this.recommendedTrack);
+  }
+
+  returnToTrains() {
+    this.addSongToTrainService.returnTrainView();
+    this.addTrainView = this.addSongToTrainService.addTrainView;
   }
 
   recommendTrack = () => {
-    console.log('recommend track', this.recommendedTrack);
     this.addSongToTrainService.addSong(this.recommendedTrack).subscribe(res => {
-      this.search();
+      this.getFavTrains();
+      console.log('reccd track before wipe:', this.recommendedTrack);
+      this.recommendedTrack = '';
+      console.log('reccd track after wipe:', this.recommendedTrack);
+      this.songResults = [];
+      this.searchResults = [];
+      this.displayLoadingGif()
     }, err => {
       console.log('err', err);
     })

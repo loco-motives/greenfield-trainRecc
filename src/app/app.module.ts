@@ -22,6 +22,9 @@ import { HomeService } from './home/home.service';
 import { AddSongToTrainService } from './services/add-song-to-train.service';
 import { SearchTagService} from './services/search-tag.service';
 import { SearchpageComponent } from './searchpage/searchpage.component';
+import { AuthGuard } from './services/auth-guard.service';
+import { AuthService } from './services/auth.service';
+import { SearchTrainsComponent } from './search-trains/search-trains.component';
 
 
 @NgModule({
@@ -33,14 +36,15 @@ import { SearchpageComponent } from './searchpage/searchpage.component';
     LoginComponent,
     SearchComponent,
     FavTrainsComponent,
-    SearchpageComponent
+    SearchpageComponent,
+    SearchTrainsComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
     RouterModule.forRoot([
-      { path: '', component: HomeComponent },
+      { path: '', component: HomeComponent, canActivate: [AuthGuard] },
       { path: 'login', component: LoginComponent, children: [
         { path: 'form', component: FormComponent },
         { path: 'signup', component: SignupComponent}
@@ -50,7 +54,17 @@ import { SearchpageComponent } from './searchpage/searchpage.component';
     ]),
     MaterialModule.forRoot()
   ],
-  providers: [ApiService, SignupService, LoginService, GetTrainsService, HomeService, AddSongToTrainService, SearchTagService],
+  providers: [
+    ApiService, 
+    SignupService, 
+    LoginService, 
+    GetTrainsService, 
+    HomeService, 
+    AddSongToTrainService, 
+    SearchTagService,
+    AuthGuard,
+    AuthService
+    ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

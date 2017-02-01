@@ -3,7 +3,7 @@
   
   <div *ngFor="let atv of addTrainView;">
     <div *ngIf="atv">
-        <md-card class='killme'>
+        <md-card class='yuriyisgay'>
             <md-input-container width="100%">
             <textarea md-input placeholder="Train Name" [(ngModel)]="trainName"></textarea>
             </md-input-container>
@@ -17,10 +17,10 @@
             </md-input-container>
 
             <div class="selected-song" id="slist">
-                <p>
+                <h4>
                 {{selectedTrack.artist}} {{selectedTrack.ph}}
                 {{selectedTrack.song}}
-                </p>
+                </h4>
             </div>
 
             <button md-raised-button color='warn' routerLink="" (click)="createTrain()" class='login' > Submit </button>
@@ -38,13 +38,18 @@
                 </md-list>
         </md-card>
     </div>
-
+ 
     <div *ngIf="!atv">
-        <md-card class='searches'>
-            <h4>Track to recommend: {{this.recommendedTrack.song}}</h4>
+        <md-card class='searches' id='addSongView'>
+            <button class="return-to-trains-btn btn btn-danger" (click)="returnToTrains()">x</button>
+            <h4>Track to recommend</h4>
+            <h4>-----------------------</h4>
+            <h4>{{recommendedTrack.song}}</h4>
             <input placeholder="Search for song" [(ngModel)]="songToSearch">
+                <p>
+                <button md-raised-button color='warn' class='login2' (click)="recommendTrack()" *ngIf="recommendedTrack">Add Song</button>
                 <button md-raised-button color='warn' class='login2' (click)="searchForSong()">Search</button>
-                <button md-raised-button color='warn' class='login2' (click)="recommendTrack()" *ngIf="recommendedTrack">Recommend</button>
+                </p>
                 <md-list id="slist">
                 <div class="song" (click)="trackToRecommend(i)" *ngFor="let songResult of songResults; let i = index; trackBy: trackByFn">
                     <p>{{songResult.artist}}</p>
@@ -56,7 +61,7 @@
 </div>
 <img class='loadinggif' src='http://khztkd.ir/Upload/Loading%20(2).gif' *ngIf='!listrendered'>
 
-<button md-raised-button color='warn' class="get-fav-btns" (click)='getFavTrains()'> Favorited Songs </button>
+<button md-raised-button color='warn' class="get-fav-btns" (click)='getFavTrains()' (click)="returnToTrains()"> Favorited Songs </button>
 
 <app-fav-trains *ngIf="listrendered"></app-fav-trains>
 
