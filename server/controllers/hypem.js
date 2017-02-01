@@ -16,6 +16,7 @@ var findHypemSongs = {
     var songQuery = req.body.songQuery.replace(/ /g, '%20');
     rp.get({ url: hypemSearch + songQuery + '/1/', headers: headers})
       .then(html => {
+        console.log('html', html);
         let tracks = util.getTracks(html);
         res.send(tracks.slice(0, 3));
       }).catch(err => {
