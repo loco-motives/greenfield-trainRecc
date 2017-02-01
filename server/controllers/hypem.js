@@ -6,7 +6,7 @@ const util = require('../utils/utility');
 
 const hypemCookie = 'AUTH=03%3A45dcd553c82cccb5165dfff1dfedc88f%3A1484958954%3A1245621796%3ACA-US';
 const hypemHost = 'hypem.com';
-const hypemSearch = 'https://hypem.com/search/';
+const hypemSearch = 'http://hypem.com/search/';
 const headers = { 'Cookie': hypemCookie, 'Host': hypemHost};
 
 var findHypemSongs = {
