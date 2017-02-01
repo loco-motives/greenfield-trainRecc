@@ -26,6 +26,7 @@ const hypemServe = 'http://hypem.com/serve/source/';
 const headers = { 'Cookie': hypemCookie, 'Host': hypemHost};
 
 var getTracks = html => {
+  console.log('getTracks HTML', html);
   let $ = cheerio.load(html);
   let tracks = JSON.parse($('#displayList-data').remove().html()).tracks;
   return tracks.map(track => {
